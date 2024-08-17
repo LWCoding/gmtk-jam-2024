@@ -7,14 +7,14 @@ using UnityEngine.Tilemaps;
 public class TilemapManager : MonoBehaviour
 {
 
-    private static GameManager _instance;
-    public static GameManager Instance
+    private static TilemapManager _instance;
+    public static TilemapManager Instance
     {
         get
         {
             if (_instance == null)
             {
-                _instance = FindObjectOfType<GameManager>();
+                _instance = FindObjectOfType<TilemapManager>();
             }
             return _instance;
         }
@@ -31,7 +31,7 @@ public class TilemapManager : MonoBehaviour
         }
     }
 
-    public void OnMouseDown()
+    public void Update()
     {
         CheckForMouseClick();
     }
@@ -42,6 +42,8 @@ public class TilemapManager : MonoBehaviour
     /// </summary>
     public void CheckForMouseClick()
     {
+        if (!Input.GetMouseButtonDown(0)) { return; }
+        
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.down);
 
