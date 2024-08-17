@@ -312,6 +312,7 @@ GameObject:
   - component: {fileID: 483947606}
   - component: {fileID: 483947607}
   - component: {fileID: 483947608}
+  - component: {fileID: 483947609}
   m_Layer: 0
   m_Name: SCRIPTS
   m_TagString: Untagged
@@ -360,6 +361,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _moneyText: {fileID: 1774003470}
   _timerFillImage: {fileID: 1570421476}
+--- !u!114 &483947609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 483947605}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5950408084f94c4094db940faae4f79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _obstacleTilemap: {fileID: 2005421027}
 --- !u!1 &727629896
 GameObject:
   m_ObjectHideFlags: 0
