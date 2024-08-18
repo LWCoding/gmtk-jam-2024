@@ -254,8 +254,8 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &173219272
-BoxCollider2D:
+--- !u!70 &173219272
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -287,18 +287,8 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
+  m_Size: {x: 0.99999994, y: 0.99999994}
+  m_Direction: 0
 --- !u!1 &229531625
 GameObject:
   m_ObjectHideFlags: 0
@@ -522,6 +512,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _bgTilemap: {fileID: 1853700839}
   _floorTile: {fileID: 11400000, guid: 0c99637d837cf524f9b5190f896928dd, type: 2}
+  _wallTile: {fileID: 11400000, guid: 6c230a6e1a3bcd045beadc1005d99a7e, type: 2}
   _obstacleTilemap: {fileID: 2005421027}
   _currSelectedTileObject: {fileID: 0}
 --- !u!1 &727629896
@@ -622,7 +613,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 3
+  orthographic size: 3.5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1414,11 +1405,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 407798e64476f0c498d13dd70d3d7102, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _spriteRenderer: {fileID: 173219271}
-  _rb: {fileID: 1871867942}
-  MoveSpeed: 4
-  Acceleration: 50
-  Deceleration: 25
 --- !u!50 &1871867942
 Rigidbody2D:
   serializedVersion: 4
