@@ -1,0 +1,36 @@
+SFX to find:
+Customers
+- customer sitting down /
+- customer paying /
+- customer walking /
+- customer entering /
+- customer leaving /
+
+Scene Changes
+- Title to Day /
+- Day to Night /
+- Night to Day /
+
+Night Time Construction
+- build decor /
+- destroy decor /
+
+Player Actions
+- player walk /
+- player serving food-picking up food /
+
+UI
+- timer ticks /
+- 40 secs remaining /
+- timer ends /
+
+kitchen
+- food cooking
+- pick up stove
+- put down stove
+
+Miscellaneous
+- button clicking
+- button hovering
+
+Shorten Music Clips
