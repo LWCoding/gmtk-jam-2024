@@ -56,7 +56,7 @@ public class UIManager : MonoBehaviour
         int hours = interpolatedTimeMinutes / 60;
 
         // Determine AM/PM
-        string period = hours < 12 ? "AM" : "PM";
+        string period = hours < 12 ? "\nam" : "\npm";
 
         // Adjust hour to 12-hour format
         if (hours > 12)

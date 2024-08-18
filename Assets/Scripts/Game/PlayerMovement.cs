@@ -32,7 +32,7 @@ public class PlayerMovement : MonoBehaviour
         Vector3 direction = mousePosition - transform.position;
         direction.z = 0f; // Ignore the z-axis since it's a 2D game
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        _spriteRenderer.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
+        _spriteRenderer.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle + 90));
     }
 
     /// <summary>
