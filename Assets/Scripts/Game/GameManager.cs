@@ -40,7 +40,12 @@ public class GameManager : MonoBehaviour
         }
     }
     private int _timer;
-    private const int SECS_IN_DAY = 180;  
+    private const int SECS_IN_DAY = 180;
+
+    public int TilemapLeftLimit = -2;
+    public int TilemapRightLimit = 2;
+    public int TilemapDownLimit = -2;
+    public int TilemapUpLimit = 2;
 
     public Action<int> OnMoneyChanged = null;  // Param is new amount of money
     public Action<int, int> OnTimerChanged = null;  // Param is current time and max time

@@ -12,4 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09baa49f23631a046876795498f9226f, type: 3}
   m_Name: Table Tile
   m_EditorClassIdentifier: 
-  Tile: {fileID: 11400000, guid: 0c99637d837cf524f9b5190f896928dd, type: 2}
+  Tile: {fileID: 11400000, guid: a81cd2bd54ded9249bbe5045b7b25d51, type: 2}
+  AllowedLayer:
+    serializedVersion: 2
+    m_Bits: 4294967295

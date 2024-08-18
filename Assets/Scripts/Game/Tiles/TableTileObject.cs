@@ -5,9 +5,14 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Table Tile", menuName = "Tiles/Table Tile")]
 public class TableTile : TileObject
 {
-    public override void Interact()
+    public override void Interact(Vector3Int position)
     {
-        Debug.Log("Interacted with table");
+
+    }
+
+    public override void Uninteract(Vector3Int position)
+    {
+
     }
 
 }

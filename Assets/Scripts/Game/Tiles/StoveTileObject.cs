@@ -5,9 +5,20 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Stove Tile", menuName = "Tiles/Stove Tile")]
 public class StoveTile : TileObject
 {
-    public override void Interact()
+
+    [Header("Object Assignments")]
+    [SerializeField] private GameObject _stoveUIPrefab;
+
+    private Vector3 _popupOffset = new(0, 1.5f);
+
+    public override void Interact(Vector3Int position)
     {
-        Debug.Log("Interacted with stove");
+        PopupManager.Instance.SpawnObject(_stoveUIPrefab, (Vector3)position + new Vector3(0.5f, 0.5f, 0) + _popupOffset, "stove");
+    }
+
+    public override void Uninteract(Vector3Int position)
+    {
+        PopupManager.Instance.DeleteObject("stove");
     }
 
 }
