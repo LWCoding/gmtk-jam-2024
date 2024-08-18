@@ -23,6 +23,7 @@ public abstract class TilemapManager : MonoBehaviour
     [Header("BG Tilemap")]
     [SerializeField] protected Tilemap _bgTilemap;
     [SerializeField] protected TileBase _floorTile;
+    [SerializeField] protected TileBase _wallTile;
     [Header("Obstacle Tilemap")]
     [SerializeField] protected Tilemap _obstacleTilemap;
 
@@ -42,8 +43,9 @@ public abstract class TilemapManager : MonoBehaviour
         // Place a few tiles at the beginning of the game   (  TODO:   REMOVE THIS   !!   )
         PlaceTileAt(new(-2, -2, 0), _allTileObjects[0]);
         PlaceTileAt(new(1, 1, 0), _allTileObjects[1]);
-        // Draw all floor tiles
+        // Draw all floor and wall tiles
         DrawBGTiles();
+        DrawWallTiles();
     }
 
     private void DrawBGTiles()
@@ -54,6 +56,20 @@ public abstract class TilemapManager : MonoBehaviour
             {
                 _bgTilemap.SetTile(new(i, j, 0), _floorTile);
             }
+        }
+    }
+
+    private void DrawWallTiles()
+    {
+        for (int i = GameManager.Instance.TilemapLeftLimit - 1; i < GameManager.Instance.TilemapRightLimit + 1; i++)
+        {
+            _obstacleTilemap.SetTile(new(i, GameManager.Instance.TilemapDownLimit - 1, 0), _wallTile);  // Bottom wall
+            _obstacleTilemap.SetTile(new(i, GameManager.Instance.TilemapUpLimit, 0), _wallTile);  // Top wall
+        }
+        for (int j = GameManager.Instance.TilemapDownLimit; j < GameManager.Instance.TilemapUpLimit; j++)
+        {
+            _obstacleTilemap.SetTile(new(GameManager.Instance.TilemapLeftLimit - 1, j, 0), _wallTile);  // Left wall
+            _obstacleTilemap.SetTile(new(GameManager.Instance.TilemapRightLimit, j, 0), _wallTile);  // Right wall
         }
     }
 
