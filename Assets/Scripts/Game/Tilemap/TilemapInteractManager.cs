@@ -44,12 +44,13 @@ public class TilemapInteractManager : TilemapManager
     {
         Vector3 playerPos = Player.Instance.transform.position;
 
-        List<Vector3Int> tooFarAway = _allCloseInteractables.FindAll((pos) => Vector3.Distance(playerPos, (Vector3)pos + new Vector3(0.5f, 0.5f, 0)) >= INTERACT_DISTANCE);
+        List<Vector3Int> shouldDeactivate = _allCloseInteractables.FindAll((pos) => !_tileObjects[pos].IsInteractable || Vector3.Distance(playerPos, (Vector3)pos + new Vector3(0.5f, 0.5f, 0)) >= INTERACT_DISTANCE);
 
-        for (int i = tooFarAway.Count - 1; i >= 0; i--)
+        for (int i = shouldDeactivate.Count - 1; i >= 0; i--)
         {
-            _tileObjects[tooFarAway[i]].OnExitInteractRange(tooFarAway[i]);
-            _obstacleTilemap.SetColor(tooFarAway[i], Color.white);
+            Vector3Int pos = shouldDeactivate[i];
+            _tileObjects[pos].OnExitInteractRange(pos);
+            _obstacleTilemap.SetColor(pos, Color.white);
             _allCloseInteractables.RemoveAt(i);
         }
     }

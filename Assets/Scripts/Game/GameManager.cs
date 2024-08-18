@@ -73,6 +73,7 @@ public class GameManager : MonoBehaviour
         if (RestaurantTiles.Count == 0)
         {
             RestaurantTiles[new(-2, -2)] = _allTileObjects[0];
+            RestaurantTiles[new(-2, -1)] = _allTileObjects[0];
             RestaurantTiles[new(1, 1)] = _allTileObjects[1];
         }
     }
