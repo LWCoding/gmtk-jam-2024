@@ -18,6 +18,14 @@ public class TilemapPlaceManager : TilemapManager
     }
 
     /// <summary>
+    /// Save the tiles to the static class when this scene is changed.
+    /// </summary>
+    public void OnDestroy()
+    {
+        GameManager.RestaurantTiles = _tileObjects;
+    }
+
+    /// <summary>
     /// When the mouse is clicked on an obstacle on the tilemap,
     /// renders logic related to that obstacle.
     /// </summary>
