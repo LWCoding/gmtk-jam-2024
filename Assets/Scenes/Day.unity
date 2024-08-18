@@ -524,9 +524,6 @@ MonoBehaviour:
   _floorTile: {fileID: 11400000, guid: 0c99637d837cf524f9b5190f896928dd, type: 2}
   _obstacleTilemap: {fileID: 2005421027}
   _currSelectedTileObject: {fileID: 0}
-  _currActiveTileObject: {fileID: 0}
-  _allTileObjects: []
-  _ghostTilePositions: []
 --- !u!1 &727629896
 GameObject:
   m_ObjectHideFlags: 0
