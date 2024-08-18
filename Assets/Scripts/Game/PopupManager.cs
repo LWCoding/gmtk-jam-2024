@@ -27,6 +27,29 @@ public class PopupManager : MonoBehaviour
         }
     }
 
+    private readonly Dictionary<string, GameObject> _popups = new();
+
+    /// Spawns an object at a specified position, and stores it into the
+    /// dictionary at a specified ID. Can be deleted with `DeleteObject`.
+    /// </summary>
+    public void SpawnObject(GameObject obj, Vector3 position, string id)
+    {
+        GameObject copy = Instantiate(obj, position, Quaternion.identity);
+        _popups[id] = copy;
+    }
+    
+    /// <summary>
+    /// If an object with the specified ID exists, deletes that object.
+    /// </summary>
+    public void DeleteObject(string id)
+    {
+        if (_popups.ContainsKey(id))
+        {
+            Destroy(_popups[id]);
+            _popups.Remove(id);
+        }
+    }
+
     /// <summary>
     /// Spawns an object at a specified position, and stores it into the
     /// dictionary at a specified ID. Can be deleted with `DeleteObject`.

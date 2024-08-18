@@ -18,16 +18,9 @@ public class Player : MonoBehaviour
         }
     }
 
-    [Header("Object Assignments")]
-    [SerializeField] private SpriteRenderer _spriteRenderer;
-    [SerializeField] private Rigidbody2D _rb;
-    [Header("Player Properties")]
-    public float MoveSpeed;
-    public float Acceleration;
-    public float Deceleration;
+    private GameObject _holding = null;
 
-    private Vector2 _movement;
-    private Vector2 _velocity;
+    public bool IsHoldingItem() => _holding != null;
 
     private void Awake()
     {
@@ -37,27 +30,24 @@ public class Player : MonoBehaviour
         }
     }
 
-    void Update()
+    /// <summary>
+    /// Makes the player start holding an item.
+    /// It is recommended you check IsHoldingItem() before executing this function.
+    /// </summary>    
+    public void HoldItem(GameObject obj)
     {
-        // Get input from the player
-        float moveX = Input.GetAxisRaw("Horizontal");
-        float moveY = Input.GetAxisRaw("Vertical");
-
-        // Set the movement vector based on input
-        _movement = new Vector2(moveX, moveY).normalized;
+        _holding = obj;
+        obj.transform.SetParent(transform);
+        obj.transform.position = transform.position;
     }
 
-    void FixedUpdate()
+    /// <summary>
+    /// Make the player stop holding whatever they're holding.
+    /// Destroys the object they are holding.
+    /// </summary>
+    public void DropItem()
     {
-        // Calculate target velocity based on input and moveSpeed
-        Vector2 targetVelocity = _movement * MoveSpeed;
-
-        // Accelerate towards the target velocity
-        _velocity = Vector2.MoveTowards(_velocity, targetVelocity,
-            (_movement.magnitude > 0 ? Acceleration : Deceleration) * Time.fixedDeltaTime);
-
-        // Apply the current velocity to the player
-        _rb.velocity = _velocity;
+        Destroy(_holding);
     }
 
 }

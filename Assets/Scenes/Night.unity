@@ -168,7 +168,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bgTilemap: {fileID: 524460556}
-  _floorTile: {fileID: 11400000, guid: 0c99637d837cf524f9b5190f896928dd, type: 2}
+  _floorTile: {fileID: 11400000, guid: fd45147f2cb55ad4499ad56710894c94, type: 2}
   _obstacleTilemap: {fileID: 431614380}
   _currSelectedTileObject: {fileID: 0}
 --- !u!114 &98027544

@@ -1,3 +1,4 @@
+using NaughtyAttributes;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,7 +11,7 @@ public class StoveTile : TileObject
     [SerializeField] private GameObject _stoveUIPrefab;
     [SerializeField] private GameObject _stovePanPrefab;
 
-    private Vector3 _popupOffset = new(0, 1.5f);
+    private Vector3 _popupOffset = new(0, 1f);
 
     private GameObject _panObject = null;  // If no pan on stove, null, else GameObject
 
@@ -19,7 +20,7 @@ public class StoveTile : TileObject
         // If we have a pan, interact with the pan instead!
         if (_panObject != null)
         {
-            Destroy(_panObject);
+            Player.Instance.HoldItem(_panObject);
             _panObject = null;
             return;
         }
@@ -38,4 +39,13 @@ public class StoveTile : TileObject
         });
     }
 
+    public override void OnEnterInteractRange(Vector3Int position)
+    {
+        
+    }
+
+    public override void OnExitInteractRange(Vector3Int position)
+    {
+        
+    }
 }

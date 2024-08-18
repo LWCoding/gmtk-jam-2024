@@ -16,3 +16,5 @@ MonoBehaviour:
   IsInteractable: 1
   _stoveUIPrefab: {fileID: 197020874981258463, guid: 61edc9862930c4848867b93b58def2fa, type: 3}
   _stovePanPrefab: {fileID: 4108617632051943882, guid: 8a9da388f323da3439c9544fa6180db3, type: 3}
+  _canBeInteracted: {fileID: 21300000, guid: c866c6a91d420a2419f06c326a6d6760, type: 3}
+  _alreadyInteracted: {fileID: 21300000, guid: 7723b947d12fa5242a9beebaa51ab471, type: 3}

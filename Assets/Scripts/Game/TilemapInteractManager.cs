@@ -28,9 +28,12 @@ public class TilemapInteractManager : TilemapManager
 
         foreach (Vector3Int pos in _tileObjects.Keys)
         {
-            if (_allCloseInteractables.Contains(pos) || !_tileObjects[pos].IsInteractable) { continue; }
             if (Vector3.Distance(playerPos, (Vector3)pos + new Vector3(0.5f, 0.5f, 0f)) < INTERACT_DISTANCE)
             {
+                _tileObjects[pos].OnEnterInteractRange(pos);
+
+                if (_allCloseInteractables.Contains(pos) || !_tileObjects[pos].IsInteractable) { continue; }
+
                 _obstacleTilemap.SetColor(pos, Color.yellow);
                 _allCloseInteractables.Add(pos);
             }
@@ -45,6 +48,7 @@ public class TilemapInteractManager : TilemapManager
 
         for (int i = tooFarAway.Count - 1; i >= 0; i--)
         {
+            _tileObjects[tooFarAway[i]].OnExitInteractRange(tooFarAway[i]);
             _obstacleTilemap.SetColor(tooFarAway[i], Color.white);
             _allCloseInteractables.RemoveAt(i);
         }
