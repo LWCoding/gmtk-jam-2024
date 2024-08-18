@@ -18,6 +18,29 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        LookTowardsMouse();
+        CalculateMovementVector();
+    }
+
+    /// <summary>
+    /// Make this character look towards the mouse (top-down 2D perspective).
+    /// </summary>
+    public void LookTowardsMouse()
+    {
+        // Make the player point towards the mouse
+        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector3 direction = mousePosition - transform.position;
+        direction.z = 0f; // Ignore the z-axis since it's a 2D game
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        _spriteRenderer.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
+    }
+
+    /// <summary>
+    /// Based on player inputs, calculate and store movement vector data into
+    /// the movement variable read by FixedUpdate.
+    /// </summary>
+    public void CalculateMovementVector()
+    {
         // Get input from the player
         float moveX = Input.GetAxisRaw("Horizontal");
         float moveY = Input.GetAxisRaw("Vertical");
