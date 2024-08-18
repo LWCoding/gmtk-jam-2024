@@ -357,6 +357,37 @@ MonoBehaviour:
   m_FirstSelected: {fileID: 0}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
+--- !u!1 &231789161
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 231789162}
+  m_Layer: 0
+  m_Name: DoorPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &231789162
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 231789161}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.73, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1166321840}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &280021203
 GameObject:
   m_ObjectHideFlags: 0
@@ -534,6 +565,7 @@ GameObject:
   - component: {fileID: 483947611}
   - component: {fileID: 483947610}
   - component: {fileID: 483947612}
+  - component: {fileID: 483947613}
   m_Layer: 0
   m_Name: SCRIPTS
   m_TagString: Untagged
@@ -624,6 +656,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a0e7f07c07314548947195bff47e9ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &483947613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 483947605}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11cfa6432e683094c8e31689d3a41ba8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _customerPrefab: {fileID: 2573542135402668932, guid: 4a4f87d4d5b944f4a92777c2b479499d, type: 3}
+  _delayBetweenSpawns: 3
+  _spawnLocationTransform: {fileID: 231789162}
 --- !u!1 &727629896
 GameObject:
   m_ObjectHideFlags: 0
@@ -946,6 +993,7 @@ Transform:
   m_Children:
   - {fileID: 1871867940}
   - {fileID: 45830144}
+  - {fileID: 231789162}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1335196748

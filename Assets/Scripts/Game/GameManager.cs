@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
         }
     }
     private static int _timer;
-    private const int SECS_IN_DAY = 10;  // 180 typically
+    private const int SECS_IN_DAY = 60;  // 180 typically
 
     public static Dictionary<Vector3Int, TileObject> RestaurantTiles = new();  // To persist between scenes
 
