@@ -8,7 +8,7 @@ public class TilemapInteractManager : TilemapManager
 
     private List<Vector3Int> _allCloseInteractables = new();
 
-    private const float INTERACT_DISTANCE = 1.5f;
+    private const float INTERACT_DISTANCE = 1.1f;
 
     private void Update()
     {

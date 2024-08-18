@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _fillRenderer: {fileID: 2647065397234013061}
-  _radialFillShader: {fileID: 4800000, guid: b921f20e8bb4f56459100250946c45f4, type: 3}
+  _radialFillMaterial: {fileID: 2100000, guid: 0f195306743f425449e26bd64d2b4145, type: 2}
 --- !u!1 &645717326555411818
 GameObject:
   m_ObjectHideFlags: 0
@@ -269,7 +269,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 0f195306743f425449e26bd64d2b4145, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

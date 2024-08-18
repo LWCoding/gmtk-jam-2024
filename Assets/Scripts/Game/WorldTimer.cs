@@ -9,12 +9,12 @@ public class WorldTimer : MonoBehaviour
     [Header("Object Assignments")]
     [SerializeField] private SpriteRenderer _fillRenderer;
     [Header("Shader Assignment")]
-    [SerializeField] private Shader _radialFillShader;
+    [SerializeField] private Material _radialFillMaterial;
 
     private void Awake()
     {
-        // Create a COPY of the radial fill shader to make this timer act independently
-        _fillRenderer.material.shader = Instantiate(_radialFillShader);
+        // Create a COPY of the radial fill material to make this timer act independently
+        _fillRenderer.material = Instantiate(_radialFillMaterial);
     }
 
     public void TickForSeconds(int seconds)
