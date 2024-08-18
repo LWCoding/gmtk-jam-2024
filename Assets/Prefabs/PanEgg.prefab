@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6843738002133180484}
   - component: {fileID: 1444124587589801579}
   - component: {fileID: 3377880859934465638}
+  - component: {fileID: 7358161516763592878}
   m_Layer: 0
   m_Name: PanEgg
   m_TagString: Untagged
@@ -106,3 +107,16 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &7358161516763592878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4108617632051943882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9e2878470675154a8b7a6b72cd1b8d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cookedSprite: {fileID: 21300000, guid: 705be986507dda04e80066459948faeb, type: 3}

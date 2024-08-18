@@ -9,19 +9,19 @@ public class StoveTile : TileObject
 
     [Header("Object Assignments")]
     [SerializeField] private GameObject _stoveUIPrefab;
-    [SerializeField] private GameObject _stovePanPrefab;
+    [SerializeField] private PanHandler _stovePanPrefab;
 
     private Vector3 _popupOffset = new(0, 1f);
 
-    private GameObject _panObject = null;  // If no pan on stove, null, else GameObject
+    private PanHandler _panHandler = null;  // If no pan on stove, null, else PanHandler
 
     public override void Interact(Vector3Int position)
     {
         // If we have a pan, interact with the pan instead!
-        if (_panObject != null)
+        if (_panHandler != null)
         {
-            Player.Instance.HoldItem(_panObject);
-            _panObject = null;
+            Player.Instance.HoldItem(_panHandler.gameObject);
+            _panHandler = null;
             return;
         }
 
@@ -30,12 +30,13 @@ public class StoveTile : TileObject
         Vector3 stovePosition = (Vector3)position + new Vector3(0.5f, 0.5f, 0);
 
         // Create a pan to show at the stove
-        _panObject = Instantiate(_stovePanPrefab, stovePosition, Quaternion.identity);
+        _panHandler = Instantiate(_stovePanPrefab, stovePosition, Quaternion.identity);
 
         // Spawn the popup above the stove
         PopupManager.Instance.SpawnPopupThen(_stoveUIPrefab, stovePosition + _popupOffset, 8, () =>
         {
             IsInteractable = true;
+            _panHandler.FinishCooking();
         });
     }
 
