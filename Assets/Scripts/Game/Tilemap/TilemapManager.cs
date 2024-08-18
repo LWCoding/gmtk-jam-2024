@@ -49,9 +49,9 @@ public abstract class TilemapManager : MonoBehaviour
     /// </summary>
     private void DrawBGTiles()
     {
-        for (int i = GameManager.Instance.TilemapLeftLimit; i < GameManager.Instance.TilemapRightLimit; i++)
+        for (int i = GameManager.TilemapLeftLimit; i < GameManager.TilemapRightLimit; i++)
         {
-            for (int j = GameManager.Instance.TilemapDownLimit; j < GameManager.Instance.TilemapUpLimit; j++)
+            for (int j = GameManager.TilemapDownLimit; j < GameManager.TilemapUpLimit; j++)
             {
                 _bgTilemap.SetTile(new(i, j, 0), _floorTile);
             }
@@ -63,15 +63,15 @@ public abstract class TilemapManager : MonoBehaviour
     /// </summary>
     private void DrawWallTiles()
     {
-        for (int i = GameManager.Instance.TilemapLeftLimit - 1; i < GameManager.Instance.TilemapRightLimit + 1; i++)
+        for (int i = GameManager.TilemapLeftLimit - 1; i < GameManager.TilemapRightLimit + 1; i++)
         {
-            _obstacleTilemap.SetTile(new(i, GameManager.Instance.TilemapDownLimit - 1, 0), _wallTile);  // Bottom wall
-            _obstacleTilemap.SetTile(new(i, GameManager.Instance.TilemapUpLimit, 0), _wallTile);  // Top wall
+            _obstacleTilemap.SetTile(new(i, GameManager.TilemapDownLimit - 1, 0), _wallTile);  // Bottom wall
+            _obstacleTilemap.SetTile(new(i, GameManager.TilemapUpLimit, 0), _wallTile);  // Top wall
         }
-        for (int j = GameManager.Instance.TilemapDownLimit; j < GameManager.Instance.TilemapUpLimit; j++)
+        for (int j = GameManager.TilemapDownLimit; j < GameManager.TilemapUpLimit; j++)
         {
-            _obstacleTilemap.SetTile(new(GameManager.Instance.TilemapLeftLimit - 1, j, 0), _wallTile);  // Left wall
-            _obstacleTilemap.SetTile(new(GameManager.Instance.TilemapRightLimit, j, 0), _wallTile);  // Right wall
+            _obstacleTilemap.SetTile(new(GameManager.TilemapLeftLimit - 1, j, 0), _wallTile);  // Left wall
+            _obstacleTilemap.SetTile(new(GameManager.TilemapRightLimit, j, 0), _wallTile);  // Right wall
         }
     }
 
@@ -88,8 +88,8 @@ public abstract class TilemapManager : MonoBehaviour
 
     public bool IsValidTile(Vector3Int pos)
     {
-        return pos.x >= GameManager.Instance.TilemapLeftLimit && pos.x < GameManager.Instance.TilemapRightLimit &&
-               pos.y >= GameManager.Instance.TilemapDownLimit && pos.y < GameManager.Instance.TilemapUpLimit;
+        return pos.x >= GameManager.TilemapLeftLimit && pos.x < GameManager.TilemapRightLimit &&
+               pos.y >= GameManager.TilemapDownLimit && pos.y < GameManager.TilemapUpLimit;
     }
 
     /// <summary>

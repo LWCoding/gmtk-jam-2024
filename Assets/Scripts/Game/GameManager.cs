@@ -41,14 +41,14 @@ public class GameManager : MonoBehaviour
         }
     }
     private static int _timer;
-    private const int SECS_IN_DAY = 180;
+    private const int SECS_IN_DAY = 10;  // 180 typically
 
     public static Dictionary<Vector3Int, TileObject> RestaurantTiles = new();  // To persist between scenes
 
-    public int TilemapLeftLimit = -2;
-    public int TilemapRightLimit = 2;
-    public int TilemapDownLimit = -2;
-    public int TilemapUpLimit = 2;
+    public static int TilemapLeftLimit = -2;
+    public static int TilemapRightLimit = 2;
+    public static int TilemapDownLimit = -2;
+    public static int TilemapUpLimit = 2;
 
     public static Action<int> OnMoneyChanged = null;  // Param is new amount of money
     public static Action<int, int> OnTimerChanged = null;  // Param is current time and max time
@@ -72,14 +72,18 @@ public class GameManager : MonoBehaviour
 
         if (RestaurantTiles.Count == 0)
         {
-            RestaurantTiles[new(-2, -2)] = _allTileObjects[0];
+            RestaurantTiles[new(-2, -2)] = _allTileObjects[0];  // Stoves
             RestaurantTiles[new(-2, -1)] = _allTileObjects[0];
-            RestaurantTiles[new(1, 1)] = _allTileObjects[1];
+            RestaurantTiles[new(1, 1)] = _allTileObjects[1];  // Table
         }
     }
 
+    /// <summary>
+    /// Increment the timer if we haven't hit the maximum seconds in a day.
+    /// </summary>
     private void IncrementTimer()
     {
+        if (Timer == SECS_IN_DAY) { return; }
         Timer++;
     }
 
