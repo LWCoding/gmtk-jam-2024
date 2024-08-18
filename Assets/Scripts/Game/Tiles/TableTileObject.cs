@@ -14,7 +14,6 @@ public class TableTile : TileObject
         PossibleSeatPositions = new();
         var tileObjects = TilemapManager.Instance.TileObjects;
         Vector3Int[] offsets = { new(-1, 0), new(1, 0), new(0, 1), new(0, -1) };
-        Debug.Log(position);
         foreach (Vector3Int offset in offsets)
         {
             // If there is something NOT adjacent to this side of table
