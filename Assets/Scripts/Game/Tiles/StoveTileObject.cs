@@ -16,6 +16,11 @@ public class StoveTile : TileObject
 
     private PanHandler _panHandler = null;  // If no pan on stove, null, else PanHandler
 
+    public override void Initialize(Vector3Int position)
+    {
+
+    }
+
     public override void Interact(Vector3Int position)
     {
         // If we have a pan, interact with the pan instead!

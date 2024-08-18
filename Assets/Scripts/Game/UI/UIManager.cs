@@ -12,7 +12,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Image _timerFillImage;
     [SerializeField] private TextMeshProUGUI _timerDayText;
 
-    private void Awake()
+    private void OnEnable()
     {
         if (_moneyText != null)
         {
@@ -22,6 +22,12 @@ public class UIManager : MonoBehaviour
         {
             GameManager.OnTimerChanged += UpdateTimerValue;
         }
+    }
+
+    private void OnDisable()
+    {
+        GameManager.OnMoneyChanged -= UpdateMoneyText;
+        GameManager.OnTimerChanged -= UpdateTimerValue;
     }
 
     /// <summary>

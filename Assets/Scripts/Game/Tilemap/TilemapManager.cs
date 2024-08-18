@@ -20,6 +20,11 @@ public abstract class TilemapManager : MonoBehaviour
         }
     }
 
+    public Dictionary<Vector3Int, TileObject> TileObjects
+    {
+        get => _tileObjects;
+    }
+
     [Header("BG Tilemap")]
     [SerializeField] protected Tilemap _bgTilemap;
     [SerializeField] protected TileBase _floorTile;
@@ -77,12 +82,15 @@ public abstract class TilemapManager : MonoBehaviour
 
     /// <summary>
     /// Load saved tiles from the GameManager script.
+    /// 
+    /// Initialize each one.
     /// </summary>
     private void LoadTilesFromRestaurant()
     {
         foreach (Vector3Int pos in GameManager.RestaurantTiles.Keys)
         {
             PlaceTileAt(pos, GameManager.RestaurantTiles[pos]);
+            GameManager.RestaurantTiles[pos].Initialize(pos);
         }
     }
 
