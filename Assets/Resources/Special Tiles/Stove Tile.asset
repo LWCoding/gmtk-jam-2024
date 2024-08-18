@@ -12,8 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb7d3c0ed1f273043907380e230802d7, type: 3}
   m_Name: Stove Tile
   m_EditorClassIdentifier: 
-  Tile: {fileID: 11400000, guid: a3128939a36c2ab4e8c959810615d78b, type: 2}
-  AllowedLayer:
-    serializedVersion: 2
-    m_Bits: 64
+  Tile: {fileID: 11400000, guid: 8016fc83f3460874dbd23f02a7d02ab1, type: 2}
   _stoveUIPrefab: {fileID: 197020874981258463, guid: 61edc9862930c4848867b93b58def2fa, type: 3}

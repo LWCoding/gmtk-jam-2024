@@ -4,10 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class TilemapManager : MonoBehaviour
+public abstract class TilemapManager : MonoBehaviour
 {
-
-    public static bool IsInLayerMask(GameObject obj, LayerMask mask) => (mask.value & (1 << obj.layer)) != 0;
 
     private static TilemapManager _instance;
     public static TilemapManager Instance
@@ -23,19 +21,15 @@ public class TilemapManager : MonoBehaviour
     }
 
     [Header("BG Tilemap")]
-    [SerializeField] private Tilemap _bgTilemap;
-    [SerializeField] private TileBase _floorTile;
+    [SerializeField] protected Tilemap _bgTilemap;
+    [SerializeField] protected TileBase _floorTile;
     [Header("Obstacle Tilemap")]
-    [SerializeField] private Tilemap _obstacleTilemap;
+    [SerializeField] protected Tilemap _obstacleTilemap;
 
-    private readonly Dictionary<Vector3Int, TileObject> _tileObjects = new();
-    [SerializeField, ReadOnly] private TileObject _currSelectedTileObject = null;
-    [SerializeField, ReadOnly] private TileObject _currActiveTileObject = null;
-    [SerializeField, ReadOnly] private List<TileObject> _allTileObjects = new();
-    [SerializeField, ReadOnly] private List<Vector3Int> _ghostTilePositions = new();
-
-    private Vector3Int _originalClickedPosition;  // Position that the mouse is clicked
-    private bool _isDragging = false;  // Only set to true if mouse is moved a distance after clicking
+    protected readonly Dictionary<Vector3Int, TileObject> _tileObjects = new();
+    [SerializeField, ReadOnly] protected TileObject _currSelectedTileObject = null;
+    protected List<TileObject> _allTileObjects = new();
+    protected List<Vector3Int> _ghostTilePositions = new();
 
     private void Awake()
     {
@@ -45,18 +39,11 @@ public class TilemapManager : MonoBehaviour
         }
         // Find all tile objects from Resources folder
         _allTileObjects = new(Resources.LoadAll<TileObject>("Special Tiles"));
-        // Place a few tiles at the beginning of the game
+        // Place a few tiles at the beginning of the game   (  TODO:   REMOVE THIS   !!   )
         PlaceTileAt(new(-2, -2, 0), _allTileObjects[0]);
         PlaceTileAt(new(1, 1, 0), _allTileObjects[1]);
         // Draw all floor tiles
         DrawBGTiles();
-    }
-
-    private void Update()
-    {
-        CheckForMouseClick();
-        CheckForMouseDrag();
-        CheckForMouseUp();
     }
 
     private void DrawBGTiles()
@@ -119,95 +106,6 @@ public class TilemapManager : MonoBehaviour
             _obstacleTilemap.SetTile(pos, null);
         }
         _ghostTilePositions.Clear();
-    }
-
-    /// <summary>
-    /// When the mouse is clicked on an obstacle on the tilemap,
-    /// renders logic related to that obstacle.
-    /// </summary>
-    private void CheckForMouseClick()
-    {
-        if (!Input.GetMouseButtonDown(0)) { return; }
-
-        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector3Int tpos = _obstacleTilemap.WorldToCell(mousePos);
-        RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.down);
-
-        if (!IsValidTile(tpos)) { return; }  // If we've hit a non-valid tile, stop
-
-        // If we've clicked on a different layer mask, deselect current object
-        if (_currActiveTileObject != null && (!hit || !IsInLayerMask(hit.collider.gameObject, _currActiveTileObject.AllowedLayer))) {
-            _currActiveTileObject.Uninteract(tpos);
-            _currActiveTileObject = null;
-        }
-
-        _originalClickedPosition = tpos;
-        _isDragging = false;
-
-        // If we find an obstacle here, select it!
-        if (_tileObjects.TryGetValue(tpos, out TileObject selectedObj))
-        {
-            _currSelectedTileObject = selectedObj;
-        }
-    }
-
-    /// <summary>
-    /// When the mouse is dragged AND we're currently selecting an
-    /// obstacle on the tilemap, renders drag logic.
-    /// </summary>
-    private void CheckForMouseDrag()
-    {
-        if (!Input.GetMouseButton(0) || _currSelectedTileObject == null) { return; }
-
-        // If we've moved the mouse far enough from the orig position, we are dragging. Called ONCE
-        if (!_isDragging && Vector2.Distance(Camera.main.ScreenToWorldPoint(Input.mousePosition), ((Vector3)_originalClickedPosition) + new Vector3(0.5f, 0.5f, 0)) > 0.5f)
-        {
-            _isDragging = true;
-            _obstacleTilemap.SetColor(_originalClickedPosition, new Color(0.6f, 0.6f, 0.6f));
-        }
-
-        // Render logic if we are dragging.
-        if (_isDragging)
-        {
-            Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector3Int tpos = _obstacleTilemap.WorldToCell(mousePos);
-
-            if (!IsValidTile(tpos)) { return; }
-
-            EraseAllGhostTiles();
-            CreateGhostTileAt(tpos, _currSelectedTileObject);
-        }
-    }
-
-    /// <summary>
-    /// When the mouse is let go AND we're currently selecting an
-    /// obstacle on the tilemap, renders let-go logic.
-    /// </summary>
-    private void CheckForMouseUp()
-    {
-        if (!Input.GetMouseButtonUp(0) || _currSelectedTileObject == null) { return; }
-
-        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector3Int tpos = _obstacleTilemap.WorldToCell(mousePos);
-
-        if (_isDragging)
-        {
-            EraseAllGhostTiles();
-            _obstacleTilemap.SetColor(_originalClickedPosition, new Color(1, 1, 1));
-            if (!_tileObjects.TryGetValue(tpos, out TileObject selectedObj) && IsValidTile(tpos))
-            {
-                EraseTileAt(_originalClickedPosition);
-                PlaceTileAt(tpos, _currSelectedTileObject);
-            }
-        } 
-        else
-        {
-            _currActiveTileObject = _currSelectedTileObject;
-            _currSelectedTileObject.Interact(tpos);
-        }
-
-        _isDragging = false;
-        _currSelectedTileObject = null;
     }
 
 }

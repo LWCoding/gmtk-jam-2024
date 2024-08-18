@@ -13,8 +13,14 @@ public class UIManager : MonoBehaviour
 
     private void Awake()
     {
-        GameManager.Instance.OnMoneyChanged += UpdateMoneyText;
-        GameManager.Instance.OnTimerChanged += UpdateTimerValue;
+        if (_moneyText != null)
+        {
+            GameManager.Instance.OnMoneyChanged += UpdateMoneyText;
+        }
+        if (_timerFillImage != null)
+        {
+            GameManager.Instance.OnTimerChanged += UpdateTimerValue;
+        }
     }
 
     /// <summary>

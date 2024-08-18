@@ -5,6 +5,19 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
 
+    private static Player _instance;
+    public static Player Instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                _instance = FindObjectOfType<Player>();
+            }
+            return _instance;
+        }
+    }
+
     [Header("Object Assignments")]
     [SerializeField] private SpriteRenderer _spriteRenderer;
     [SerializeField] private Rigidbody2D _rb;
@@ -15,6 +28,14 @@ public class Player : MonoBehaviour
 
     private Vector2 _movement;
     private Vector2 _velocity;
+
+    private void Awake()
+    {
+        if (Instance != this)
+        {
+            Destroy(this);
+        }
+    }
 
     void Update()
     {
