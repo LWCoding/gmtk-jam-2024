@@ -15,11 +15,11 @@ public class UIManager : MonoBehaviour
     {
         if (_moneyText != null)
         {
-            GameManager.Instance.OnMoneyChanged += UpdateMoneyText;
+            GameManager.OnMoneyChanged += UpdateMoneyText;
         }
         if (_timerFillImage != null)
         {
-            GameManager.Instance.OnTimerChanged += UpdateTimerValue;
+            GameManager.OnTimerChanged += UpdateTimerValue;
         }
     }
 

@@ -27,9 +27,8 @@ public abstract class TilemapManager : MonoBehaviour
     [Header("Obstacle Tilemap")]
     [SerializeField] protected Tilemap _obstacleTilemap;
 
-    protected readonly Dictionary<Vector3Int, TileObject> _tileObjects = new();
+    protected Dictionary<Vector3Int, TileObject> _tileObjects = new();
     [SerializeField, ReadOnly] protected TileObject _currSelectedTileObject = null;
-    protected List<TileObject> _allTileObjects = new();
     protected List<Vector3Int> _ghostTilePositions = new();
 
     private void Awake()
@@ -38,16 +37,16 @@ public abstract class TilemapManager : MonoBehaviour
         {
             Destroy(this);
         }
-        // Find all tile objects from Resources folder
-        _allTileObjects = new(Resources.LoadAll<TileObject>("Special Tiles"));
-        // Place a few tiles at the beginning of the game   (  TODO:   REMOVE THIS   !!   )
-        PlaceTileAt(new(-2, -2, 0), _allTileObjects[0]);
-        PlaceTileAt(new(1, 1, 0), _allTileObjects[1]);
         // Draw all floor and wall tiles
         DrawBGTiles();
         DrawWallTiles();
+        // Load all tiles from GameManager
+        LoadTilesFromRestaurant();
     }
 
+    /// <summary>
+    /// Draw background tiles on the background layer.
+    /// </summary>
     private void DrawBGTiles()
     {
         for (int i = GameManager.Instance.TilemapLeftLimit; i < GameManager.Instance.TilemapRightLimit; i++)
@@ -59,6 +58,9 @@ public abstract class TilemapManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Draw wall tiles around the background layer on the obstacle layer.
+    /// </summary>
     private void DrawWallTiles()
     {
         for (int i = GameManager.Instance.TilemapLeftLimit - 1; i < GameManager.Instance.TilemapRightLimit + 1; i++)
@@ -70,6 +72,17 @@ public abstract class TilemapManager : MonoBehaviour
         {
             _obstacleTilemap.SetTile(new(GameManager.Instance.TilemapLeftLimit - 1, j, 0), _wallTile);  // Left wall
             _obstacleTilemap.SetTile(new(GameManager.Instance.TilemapRightLimit, j, 0), _wallTile);  // Right wall
+        }
+    }
+
+    /// <summary>
+    /// Load saved tiles from the GameManager script.
+    /// </summary>
+    private void LoadTilesFromRestaurant()
+    {
+        foreach (Vector3Int pos in GameManager.RestaurantTiles.Keys)
+        {
+            PlaceTileAt(pos, GameManager.RestaurantTiles[pos]);
         }
     }
 
