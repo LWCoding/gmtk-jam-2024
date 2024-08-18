@@ -10,9 +10,4 @@ public class TableTile : TileObject
 
     }
 
-    public override void Uninteract(Vector3Int position)
-    {
-
-    }
-
 }

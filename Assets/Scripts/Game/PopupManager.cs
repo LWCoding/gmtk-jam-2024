@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,8 +19,6 @@ public class PopupManager : MonoBehaviour
         }
     }
 
-    private Dictionary<string, GameObject> _popups = new();
-
     private void Awake()
     {
         if (Instance != this)
@@ -32,22 +31,17 @@ public class PopupManager : MonoBehaviour
     /// Spawns an object at a specified position, and stores it into the
     /// dictionary at a specified ID. Can be deleted with `DeleteObject`.
     /// </summary>
-    public void SpawnObject(GameObject obj, Vector3 position, string id)
+    public void SpawnPopupThen(GameObject obj, Vector3 position, float popupDuration, Action action)
+    {
+        StartCoroutine(SpawnPopupThenCoroutine(obj, position, popupDuration, action));
+    }
+
+    private IEnumerator SpawnPopupThenCoroutine(GameObject obj, Vector3 position, float popupDuration, Action action)
     {
         GameObject newObj = Instantiate(obj, position, Quaternion.identity);
-        _popups[id] = newObj;
-    }
-    
-    /// <summary>
-    /// If an object with the specified ID exists, deletes that object.
-    /// </summary>
-    public void DeleteObject(string id)
-    {
-        if (_popups.ContainsKey(id))
-        {
-            Destroy(_popups[id]);
-            _popups.Remove(id);
-        }
+        yield return new WaitForSeconds(popupDuration);
+        Destroy(newObj);
+        action?.Invoke();
     }
 
 }

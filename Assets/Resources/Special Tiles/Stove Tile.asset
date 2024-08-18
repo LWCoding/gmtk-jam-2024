@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Stove Tile
   m_EditorClassIdentifier: 
   Tile: {fileID: 11400000, guid: 8016fc83f3460874dbd23f02a7d02ab1, type: 2}
+  IsInteractable: 1
   _stoveUIPrefab: {fileID: 197020874981258463, guid: 61edc9862930c4848867b93b58def2fa, type: 3}

@@ -69,7 +69,7 @@ public abstract class TilemapManager : MonoBehaviour
     public void PlaceTileAt(Vector3Int position, TileObject tileObject)
     {
         _obstacleTilemap.SetTile(position, tileObject.Tile);
-        _tileObjects[position] = tileObject;
+        _tileObjects[position] = Instantiate(tileObject);
     }
 
     /// <summary>

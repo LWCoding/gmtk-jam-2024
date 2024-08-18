@@ -13,12 +13,12 @@ public class StoveTile : TileObject
 
     public override void Interact(Vector3Int position)
     {
-        PopupManager.Instance.SpawnObject(_stoveUIPrefab, (Vector3)position + new Vector3(0.5f, 0.5f, 0) + _popupOffset, "stove");
-    }
-
-    public override void Uninteract(Vector3Int position)
-    {
-        PopupManager.Instance.DeleteObject("stove");
+        IsInteractable = false;
+        Vector3 popupLocation = (Vector3)position + new Vector3(0.5f, 0.5f, 0) + _popupOffset;
+        PopupManager.Instance.SpawnPopupThen(_stoveUIPrefab, popupLocation, 8, () =>
+        {
+            IsInteractable = true;
+        });
     }
 
 }
