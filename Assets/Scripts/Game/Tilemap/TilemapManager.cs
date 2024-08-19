@@ -36,6 +36,20 @@ public abstract class TilemapManager : MonoBehaviour
     [SerializeField, ReadOnly] protected TileObject _currSelectedTileObject = null;
     protected List<Vector3Int> _ghostTilePositions = new();
 
+    /// <summary>
+    /// Attempts to retrieve a tile from the obstacle tilemap at the provided
+    /// position. If a tile is not found, returns null. Else, returns the tile.
+    /// </summary>
+    public TileObject GetTileAtPosition(Vector3 pos)
+    {
+        Vector3Int key = _obstacleTilemap.WorldToCell(pos);
+        if (!_tileObjects.ContainsKey(key))
+        {
+            return null;
+        }
+        return _tileObjects[_obstacleTilemap.WorldToCell(pos)];
+    }
+
     private void Awake()
     {
         if (Instance != this)

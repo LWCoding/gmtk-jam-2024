@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Table Tile
   m_EditorClassIdentifier: 
   Tile: {fileID: 11400000, guid: a81cd2bd54ded9249bbe5045b7b25d51, type: 2}
-  AllowedLayer:
-    serializedVersion: 2
-    m_Bits: 4294967295
+  IsInteractable: 0
+  IsPurchaseable: 1
+  CostToBuy: 150
+  PossibleSeatPositions: []
