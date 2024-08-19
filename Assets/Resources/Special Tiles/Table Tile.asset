@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09baa49f23631a046876795498f9226f, type: 3}
   m_Name: Table Tile
   m_EditorClassIdentifier: 
-  Tile: {fileID: 11400000, guid: a81cd2bd54ded9249bbe5045b7b25d51, type: 2}
+  Tile: {fileID: 11400000, guid: f61e9cd09e119864ea5223fb4e8788af, type: 2}
   IsInteractable: 0
   IsPurchaseable: 1
+  ShopName: Table
+  ShopDescription: Seats 1 person for each empty adjacent tile.
   CostToBuy: 150
   PossibleSeatPositions: []

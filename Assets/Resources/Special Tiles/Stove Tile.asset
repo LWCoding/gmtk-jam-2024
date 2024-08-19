@@ -15,6 +15,8 @@ MonoBehaviour:
   Tile: {fileID: 11400000, guid: 8016fc83f3460874dbd23f02a7d02ab1, type: 2}
   IsInteractable: 1
   IsPurchaseable: 1
+  ShopName: Stove
+  ShopDescription: Cooks food over 8s.
   CostToBuy: 300
   _stoveTimerPrefab: {fileID: 1980879637598166309, guid: 61edc9862930c4848867b93b58def2fa, type: 3}
   _stovePanPrefab: {fileID: 7358161516763592878, guid: 8a9da388f323da3439c9544fa6180db3, type: 3}

@@ -117,25 +117,11 @@ public abstract class TilemapManager : MonoBehaviour
     /// <summary>
     /// Given a position and a tile to place at that position, places the tile.
     /// </summary>
-    public void PlaceTileAt(Vector3Int position, TileObject tileObject)
+    public void PlaceTileAt(Vector3 pos, TileObject tileObject)
     {
+        Vector3Int position = _obstacleTilemap.WorldToCell(pos);
         _obstacleTilemap.SetTile(position, tileObject.Tile);
         _tileObjects[position] = Instantiate(tileObject);
-    }
-
-    /// <summary>
-    /// Given a position and a tile to place at that position, places the tile
-    /// in ghost mode, adding it to the _ghostTileObjects list.
-    /// 
-    /// IF the tile is already occupied, does not make a ghost tile.
-    /// </summary>
-    public void CreateGhostTileAt(Vector3Int position, TileObject tileObject)
-    {
-        if (_obstacleTilemap.GetTile(position) != null) { return; }
-
-        _obstacleTilemap.SetTile(position, tileObject.Tile);
-        _obstacleTilemap.SetColor(position, new Color(1, 1, 1, 0.4f));
-        _ghostTilePositions.Add(position);
     }
 
     /// <summary>
@@ -145,6 +131,22 @@ public abstract class TilemapManager : MonoBehaviour
     {
         _obstacleTilemap.SetTile(position, null);
         _tileObjects.Remove(position);
+    }
+
+    /// <summary>
+    /// Given a position and a tile to place at that position, places the tile
+    /// in ghost mode, adding it to the _ghostTileObjects list.
+    /// 
+    /// IF the tile is already occupied, does not make a ghost tile.
+    /// </summary>
+    public void CreateGhostTileAt(Vector3 pos, TileObject tileObject)
+    {
+        Vector3Int position = _obstacleTilemap.WorldToCell(pos);
+        if (_obstacleTilemap.GetTile(position) != null) { return; }
+
+        _obstacleTilemap.SetTile(position, tileObject.Tile);
+        _obstacleTilemap.SetColor(position, new Color(1, 1, 1, 0.4f));
+        _ghostTilePositions.Add(position);
     }
 
     /// <summary>

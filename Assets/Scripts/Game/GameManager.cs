@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
         }
     }
     private static int _timer;
-    private const int SECS_IN_DAY = 60;  // 180 typically
+    private const int SECS_IN_DAY = 60;
 
     public static Dictionary<Vector3Int, TileObject> RestaurantTiles = new();  // To persist between scenes
 
@@ -53,7 +53,7 @@ public class GameManager : MonoBehaviour
     public static Action<int> OnMoneyChanged = null;  // Param is new amount of money
     public static Action<int, int> OnTimerChanged = null;  // Param is current time and max time
 
-    protected static List<TileObject> _allTileObjects = new();
+    public static List<TileObject> AllTileObjects = new();
 
     private void Awake()
     {
@@ -66,15 +66,15 @@ public class GameManager : MonoBehaviour
 
     public static void Initialize()
     {
-        _allTileObjects = new(Resources.LoadAll<TileObject>("Special Tiles"));
+        AllTileObjects = new(Resources.LoadAll<TileObject>("Special Tiles"));
         Money = 1000;  // Starting amount of money
         Timer = 0;  // Start off at zero seconds
 
         if (RestaurantTiles.Count == 0)
         {
-            RestaurantTiles[new(-2, -2)] = _allTileObjects[0];  // Stoves
-            RestaurantTiles[new(-2, -1)] = _allTileObjects[0];
-            RestaurantTiles[new(1, 1)] = _allTileObjects[1];  // Table
+            RestaurantTiles[new(-2, -2)] = AllTileObjects[0];  // Stoves
+            RestaurantTiles[new(-2, -1)] = AllTileObjects[0];
+            RestaurantTiles[new(1, 1)] = AllTileObjects[1];  // Table
         }
     }
 

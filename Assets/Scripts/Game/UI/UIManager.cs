@@ -30,6 +30,11 @@ public class UIManager : MonoBehaviour
         GameManager.OnTimerChanged -= UpdateTimerValue;
     }
 
+    private void Start()
+    {
+        UpdateMoneyText(GameManager.Money);  // Update money amount to the global one
+    }
+
     /// <summary>
     /// Given an amount of money, updates the UI text to show that number.
     /// </summary>

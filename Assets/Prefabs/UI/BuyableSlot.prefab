@@ -9,10 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4534981265432248412}
-  - component: {fileID: 1430587845158060051}
+  - component: {fileID: 7102998375261597290}
   - component: {fileID: 3770988750155753323}
   m_Layer: 5
-  m_Name: HotbarSlot
+  m_Name: BuyableSlot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -42,7 +42,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1430587845158060051
+--- !u!114 &7102998375261597290
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -51,10 +51,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 603434686658608991}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0ea76ed3e3d55d47a5d27a4cbebc7ab, type: 3}
+  m_Script: {fileID: 11500000, guid: 00abd65e824b1d5448e7fe77c8384bcb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _imageObject: {fileID: 1600215086948381160}
+  _tooltipParent: {fileID: 2663700112968486830}
+  _tooltipText: {fileID: 6890993400318002261}
+  _image: {fileID: 7848932762021230214}
+  _costText: {fileID: 6868430285568129767}
 --- !u!61 &3770988750155753323
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -677,7 +680,7 @@ MonoBehaviour:
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
-  m_lineSpacing: 0
+  m_lineSpacing: -12
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0

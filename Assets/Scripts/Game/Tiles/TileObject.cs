@@ -8,11 +8,12 @@ public abstract class TileObject : ScriptableObject
 {
 
     [Header("Base Tile Properties")]
-    public TileBase Tile;
+    public Tile Tile;
     public bool IsInteractable = false;
     public bool IsPurchaseable = true;
-    [ShowIf("IsPurchaseable")]
-    public int CostToBuy;
+    [ShowIf("IsPurchaseable")] public string ShopName;
+    [ShowIf("IsPurchaseable")] public string ShopDescription;
+    [ShowIf("IsPurchaseable")] public int CostToBuy;
 
     public abstract void Initialize(Vector3Int position);
     public abstract void OnEnterInteractRange(Vector3Int position);

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class HotbarHandler : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
+public class HotbarSlotHandler : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
 
     [Header("Object Assignments")]

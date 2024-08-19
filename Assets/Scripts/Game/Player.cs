@@ -20,6 +20,9 @@ public class Player : MonoBehaviour
 
     private GameObject _holding = null;
 
+    [Header("Object Assignments")]
+    [SerializeField] private Transform _playerStartTransform;
+
     public bool IsHoldingItem() => _holding != null;
 
     private void Awake()
@@ -28,6 +31,11 @@ public class Player : MonoBehaviour
         {
             Destroy(this);
         }
+    }
+
+    private void Start()
+    {
+        transform.position = _playerStartTransform.position;
     }
 
     /// <summary>
