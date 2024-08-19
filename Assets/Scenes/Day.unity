@@ -357,37 +357,11 @@ MonoBehaviour:
   m_FirstSelected: {fileID: 0}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
---- !u!1 &231789161
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 231789162}
-  m_Layer: 0
-  m_Name: DoorPosition
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &231789162
+--- !u!4 &231789162 stripped
 Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 773571229499214112, guid: fcdc33ed647ccc54b93b194b6b8a7331, type: 3}
+  m_PrefabInstance: {fileID: 2746007518933812533}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 231789161}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.73, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1166321840}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &280021203
 GameObject:
   m_ObjectHideFlags: 0
@@ -644,7 +618,6 @@ MonoBehaviour:
   _floorTile: {fileID: 11400000, guid: 0c99637d837cf524f9b5190f896928dd, type: 2}
   _wallTile: {fileID: 11400000, guid: 6c230a6e1a3bcd045beadc1005d99a7e, type: 2}
   _obstacleTilemap: {fileID: 2005421027}
-  _currSelectedTileObject: {fileID: 0}
 --- !u!114 &483947612
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2540,6 +2513,63 @@ TilemapCollider2D:
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0
   m_UseDelaunayMesh: 0
+--- !u!1001 &2746007518933812533
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1166321840}
+    m_Modifications:
+    - target: {fileID: 773571229499214112, guid: fcdc33ed647ccc54b93b194b6b8a7331, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 773571229499214112, guid: fcdc33ed647ccc54b93b194b6b8a7331, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.73
+      objectReference: {fileID: 0}
+    - target: {fileID: 773571229499214112, guid: fcdc33ed647ccc54b93b194b6b8a7331, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 773571229499214112, guid: fcdc33ed647ccc54b93b194b6b8a7331, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 773571229499214112, guid: fcdc33ed647ccc54b93b194b6b8a7331, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 773571229499214112, guid: fcdc33ed647ccc54b93b194b6b8a7331, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 773571229499214112, guid: fcdc33ed647ccc54b93b194b6b8a7331, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 773571229499214112, guid: fcdc33ed647ccc54b93b194b6b8a7331, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 773571229499214112, guid: fcdc33ed647ccc54b93b194b6b8a7331, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 773571229499214112, guid: fcdc33ed647ccc54b93b194b6b8a7331, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7108690883530583662, guid: fcdc33ed647ccc54b93b194b6b8a7331, type: 3}
+      propertyPath: m_Name
+      value: DoorPosition
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: fcdc33ed647ccc54b93b194b6b8a7331, type: 3}
 --- !u!1001 &9045691021273387803
 PrefabInstance:
   m_ObjectHideFlags: 0

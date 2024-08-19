@@ -14,9 +14,7 @@ public class SellSlot : SlotHandler
     {
         if (!_isDragging) { return; }
         Vector3 uiMousePos = Input.mousePosition;
-        Vector3 mousePos = Camera.main.ScreenToWorldPoint(uiMousePos);
         _image.transform.position = uiMousePos;
-        TilemapManager.Instance.EraseTileAt(mousePos);  // Erase tile
     }
 
     public override void Initialize(TileObject tileObj)
@@ -26,6 +24,9 @@ public class SellSlot : SlotHandler
 
     public override void RenderLogicAt(Vector3 pos)
     {
+        TileObject tileAtPosition = TilemapManager.Instance.GetTileAtPosition(pos);
+        if (tileAtPosition == null) { return; }
+        GameManager.Money += tileAtPosition.CostToBuy / 2;
         TilemapManager.Instance.EraseTileAt(pos);  // Erase tile
     }
 

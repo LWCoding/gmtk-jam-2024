@@ -17,10 +17,11 @@ public class CustomerSpawner : MonoBehaviour
 
     /// <summary>
     /// Spawn an instance of a customer at the spawner's start location.
+    /// Make them face downwards.
     /// </summary>
     public void SpawnCustomer()
     {
-        Instantiate(_customerPrefab, _spawnLocationTransform.position, Quaternion.identity);
+        Instantiate(_customerPrefab, _spawnLocationTransform.position, Quaternion.Euler(0, 0, 180));
     }
 
 }
