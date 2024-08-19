@@ -33,7 +33,6 @@ public abstract class TilemapManager : MonoBehaviour
     [SerializeField] protected Tilemap _obstacleTilemap;
 
     protected Dictionary<Vector3Int, TileObject> _tileObjects = new();
-    [SerializeField, ReadOnly] protected TileObject _currSelectedTileObject = null;
     protected List<Vector3Int> _ghostTilePositions = new();
 
     /// <summary>
@@ -127,8 +126,9 @@ public abstract class TilemapManager : MonoBehaviour
     /// <summary>
     /// Given a position, erases the tile at that position if one exists.
     /// </summary>
-    public void EraseTileAt(Vector3Int position)
+    public void EraseTileAt(Vector3 pos)
     {
+        Vector3Int position = _obstacleTilemap.WorldToCell(pos);
         _obstacleTilemap.SetTile(position, null);
         _tileObjects.Remove(position);
     }

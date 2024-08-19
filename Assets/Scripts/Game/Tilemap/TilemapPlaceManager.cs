@@ -10,6 +10,12 @@ public class TilemapPlaceManager : TilemapManager
     private Vector3Int _originalClickedPosition;  // Position that the mouse is clicked
     private bool _isDragging = false;  // Only set to true if mouse is moved a distance after clicking
 
+    public TileObject CurrentSelectedTile
+    {
+        get => _currSelectedTileObject;
+    }
+    [SerializeField, ReadOnly] protected TileObject _currSelectedTileObject = null;
+
     private void Update()
     {
         CheckForMouseClick();

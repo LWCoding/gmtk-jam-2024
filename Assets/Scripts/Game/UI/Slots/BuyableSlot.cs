@@ -5,17 +5,14 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
 
-public class BuyableSlot : SlotHandler, IPointerDownHandler, IPointerUpHandler
+public class BuyableSlot : SlotHandler
 {
 
     [Header("Object Assignments")]
-    [SerializeField] private Image _image;
     [SerializeField] private TextMeshProUGUI _costText;
 
     private TileObject _tileObject;
-    private bool _isDragging = false;
-    private bool _isPurchaseable = false;  // Used to ignore repeat calls to `EnableBuyIfRich`
-
+    
     /// <summary>
     /// When we're dragging, move this sprite's image object to the
     /// mouse position. Also spawn ghost tiles at positions.
@@ -60,37 +57,21 @@ public class BuyableSlot : SlotHandler, IPointerDownHandler, IPointerUpHandler
     public void ModifyStateBasedOnMoney(int currMoney)
     {
         bool canAfford = currMoney >= _tileObject.CostToBuy;
-        if (canAfford == _isPurchaseable) { return; }  // Ignore if state is same as before
+        if (canAfford == _isDraggable) { return; }  // Ignore if state is same as before
         // Or else, change the state of this slot
         if (canAfford)
         {
-            _isPurchaseable = true;
+            _isDraggable = true;
         } else
         {
-            _isPurchaseable = false;
+            _isDraggable = false;
         }
-        _costText.color = _isPurchaseable ? Color.green : Color.red;
+        _costText.color = _isDraggable ? Color.green : Color.red;
     }
 
-    public void OnPointerDown(PointerEventData pointerEventData)
+    public override void RenderLogicAt(Vector3 worldPos)
     {
-        if (!_isPurchaseable) { return; }  // If we're not purchaseable, don't do anything
-        _isDragging = true;
+        GameManager.Money -= _tileObject.CostToBuy;  // Spend money
+        TilemapManager.Instance.PlaceTileAt(worldPos, _tileObject);  // Place tile
     }
-
-    public void OnPointerUp(PointerEventData pointerEventData)
-    {
-        if (!_isDragging) { return; }  // If we're not dragging, don't do anything
-        // Get tile at position
-        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        TilemapManager.Instance.EraseAllGhostTiles();  // Erase ghost tiles to make room
-        if (TilemapManager.Instance.GetTileAtPosition(mousePos) == null)
-        {
-            GameManager.Money -= _tileObject.CostToBuy;  // Spend money
-            TilemapManager.Instance.PlaceTileAt(mousePos, _tileObject);  // Place tile
-        }
-        _isDragging = false;
-        _image.transform.localPosition = Vector3.zero; // Reset to original position
-    }
-
 }

@@ -53,6 +53,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _tooltipParent: {fileID: 6773043061455858584}
   _tooltipText: {fileID: 8760526000491490006}
+  _image: {fileID: 3754681299231885696}
 --- !u!61 &9208636441221075204
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -238,7 +239,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Drag furniture from the grid here to sell it at half price!
+  m_text: Drag this to furniture on the grid to sell it at half price!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
