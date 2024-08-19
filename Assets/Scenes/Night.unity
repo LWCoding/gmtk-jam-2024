@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 98027546}
   - component: {fileID: 98027545}
   - component: {fileID: 98027544}
+  - component: {fileID: 98027548}
   - component: {fileID: 98027543}
   - component: {fileID: 98027542}
   - component: {fileID: 98027547}
@@ -227,6 +228,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a0e7f07c07314548947195bff47e9ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &98027548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 98027541}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7647438e99edee3458dc9aa3f00551ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _transitionAnimator: {fileID: 378295805}
 --- !u!1 &160512854
 GameObject:
   m_ObjectHideFlags: 0
@@ -460,6 +474,113 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &378295803
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 551284272}
+    m_Modifications:
+    - target: {fileID: 4146598617020619097, guid: 96c377ec54fd0a84bb0e1ebbde5426b9, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4146598617020619097, guid: 96c377ec54fd0a84bb0e1ebbde5426b9, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4146598617020619097, guid: 96c377ec54fd0a84bb0e1ebbde5426b9, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4146598617020619097, guid: 96c377ec54fd0a84bb0e1ebbde5426b9, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4146598617020619097, guid: 96c377ec54fd0a84bb0e1ebbde5426b9, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4146598617020619097, guid: 96c377ec54fd0a84bb0e1ebbde5426b9, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4146598617020619097, guid: 96c377ec54fd0a84bb0e1ebbde5426b9, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4146598617020619097, guid: 96c377ec54fd0a84bb0e1ebbde5426b9, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4146598617020619097, guid: 96c377ec54fd0a84bb0e1ebbde5426b9, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4146598617020619097, guid: 96c377ec54fd0a84bb0e1ebbde5426b9, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4146598617020619097, guid: 96c377ec54fd0a84bb0e1ebbde5426b9, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4146598617020619097, guid: 96c377ec54fd0a84bb0e1ebbde5426b9, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4146598617020619097, guid: 96c377ec54fd0a84bb0e1ebbde5426b9, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4146598617020619097, guid: 96c377ec54fd0a84bb0e1ebbde5426b9, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4146598617020619097, guid: 96c377ec54fd0a84bb0e1ebbde5426b9, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4146598617020619097, guid: 96c377ec54fd0a84bb0e1ebbde5426b9, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4146598617020619097, guid: 96c377ec54fd0a84bb0e1ebbde5426b9, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4146598617020619097, guid: 96c377ec54fd0a84bb0e1ebbde5426b9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4146598617020619097, guid: 96c377ec54fd0a84bb0e1ebbde5426b9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4146598617020619097, guid: 96c377ec54fd0a84bb0e1ebbde5426b9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4433584700488451457, guid: 96c377ec54fd0a84bb0e1ebbde5426b9, type: 3}
+      propertyPath: m_Name
+      value: Transition
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 96c377ec54fd0a84bb0e1ebbde5426b9, type: 3}
+--- !u!224 &378295804 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 4146598617020619097, guid: 96c377ec54fd0a84bb0e1ebbde5426b9, type: 3}
+  m_PrefabInstance: {fileID: 378295803}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &378295805 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 6700030699358202299, guid: 96c377ec54fd0a84bb0e1ebbde5426b9, type: 3}
+  m_PrefabInstance: {fileID: 378295803}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &431614379
 GameObject:
   m_ObjectHideFlags: 0
@@ -1041,6 +1162,7 @@ RectTransform:
   m_Children:
   - {fileID: 562712690}
   - {fileID: 1210811970}
+  - {fileID: 378295804}
   m_Father: {fileID: 1908750372}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1334,7 +1456,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 98027547}
         m_TargetAssemblyTypeName: SceneSwitcher, Assembly-CSharp
-        m_MethodName: SwitchSceneTo
+        m_MethodName: TransitionSceneTo
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

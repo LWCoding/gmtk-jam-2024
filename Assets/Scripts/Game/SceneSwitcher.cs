@@ -35,4 +35,16 @@ public class SceneSwitcher : MonoBehaviour
         SceneManager.LoadScene(sceneName);
     }
 
+    /// <summary>
+    /// Given a name for a scene, transitions to that scene using
+    /// a TransitionManager, if one exists.
+    /// </summary>
+    public void TransitionSceneTo(string sceneName)
+    {
+        TransitionManager.Instance.TransitionAndCall(() =>
+        {
+            SceneManager.LoadScene(sceneName);
+        });
+    }
+
 }
