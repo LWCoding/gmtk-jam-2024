@@ -1,4 +1,4 @@
-SFX to find:
+1. SFX to find:
 Customers
 - customer sitting down /
 - customer paying /
@@ -25,12 +25,10 @@ UI
 - timer ends /
 
 kitchen
-- food cooking
-- pick up stove
-- put down stove
+- food cooking /
 
-Miscellaneous
-- button clicking
-- button hovering
+Buttons
+- button clicking /
+- button hovering /
 
-Shorten Music Clips
+2. Shorten Music Clips /
