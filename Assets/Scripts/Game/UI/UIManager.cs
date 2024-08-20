@@ -42,8 +42,14 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
-        UpdateMoneyText(GameManager.Money);  // Update money amount to the global one
-        UpdateQuotaText(GameManager.Money);
+        if (_moneyText != null)
+        {
+            UpdateMoneyText(GameManager.Money);  // Update money amount to the global one
+        }
+        if (_quotaText != null)
+        {
+            UpdateQuotaText(GameManager.Money);
+        }
     }
 
     /// <summary>
