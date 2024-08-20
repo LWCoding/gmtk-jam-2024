@@ -43,14 +43,14 @@ public class GameManager : MonoBehaviour
     private static int _timer;
     private const int SECS_IN_DAY = 60;
 
-    public const int MONEY_PER_OMELETTE = 8;
-
     public static Dictionary<Vector3Int, TileObject> RestaurantTiles = new();  // To persist between scenes
 
     public static int TilemapLeftLimit = -2;
     public static int TilemapRightLimit = 2;
     public static int TilemapDownLimit = -2;
     public static int TilemapUpLimit = 2;
+    public static float CameraZoom = 3.4f;
+    public static float CameraYOffset = 0;
 
     public float DecorBuff = 0;  // Decor buff for current level
 
@@ -84,6 +84,8 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        Camera.main.orthographicSize = CameraZoom;
+        Camera.main.transform.position += new Vector3(0, CameraYOffset, -10);
         StartCoroutine(WaitThenScan());
     }
 

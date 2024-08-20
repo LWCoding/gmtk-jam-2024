@@ -620,7 +620,6 @@ MonoBehaviour:
   _floorTile: {fileID: 11400000, guid: 0c99637d837cf524f9b5190f896928dd, type: 2}
   _wallTile: {fileID: 11400000, guid: 6c230a6e1a3bcd045beadc1005d99a7e, type: 2}
   _obstacleTilemap: {fileID: 2005421027}
-  _pathfinding: {fileID: 1347677444}
 --- !u!114 &483947612
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -761,7 +760,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 3.5
+  orthographic size: 3.8
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2

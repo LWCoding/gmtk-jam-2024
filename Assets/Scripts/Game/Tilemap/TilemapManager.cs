@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.SceneManagement;
 
 public abstract class TilemapManager : MonoBehaviour
 {
@@ -32,7 +33,6 @@ public abstract class TilemapManager : MonoBehaviour
     [SerializeField] protected TileBase _wallTile;
     [Header("Obstacle Tilemap")]
     [SerializeField] protected Tilemap _obstacleTilemap;
-    [SerializeField] private AstarPath _pathfinding;
 
     protected Dictionary<Vector3Int, TileObject> _tileObjects = new();
     protected List<Vector3Int> _ghostTilePositions = new();
@@ -56,6 +56,15 @@ public abstract class TilemapManager : MonoBehaviour
         if (Instance != this)
         {
             Destroy(this);
+        }
+        // If it's the night scene, make the kitchen bigger
+        if (SceneManager.GetActiveScene().name == "Night")
+        {
+            GameManager.TilemapLeftLimit -= 1;
+            GameManager.TilemapRightLimit += 1;
+            GameManager.TilemapDownLimit -= 1;
+            GameManager.CameraZoom += 0.62f;
+            GameManager.CameraYOffset -= 0.5f;
         }
         // Draw all floor and wall tiles
         DrawBGTiles();
