@@ -12,7 +12,7 @@ public class CustomerSpawner : MonoBehaviour
 
     private void Start()
     {
-        InvokeRepeating(nameof(SpawnCustomer), 3, _delayBetweenSpawns);
+        InvokeRepeating(nameof(SpawnCustomer), Random.Range(3.8f, 5f), _delayBetweenSpawns);
     }
 
     /// <summary>

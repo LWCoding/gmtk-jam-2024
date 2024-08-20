@@ -1070,8 +1070,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1801,7 +1801,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.52645093, b: 0.2867924, a: 1}
+  m_Color: {r: 0.19607843, g: 0.14509805, b: 0.21568628, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1876,7 +1876,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.6784314, g: 0.4, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3333,6 +3333,71 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1375848094}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1131206234547220682
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 923022119584180502, guid: f0fa74f9b2411e5469cfeca3d067685d, type: 3}
+      propertyPath: m_Name
+      value: AUDIO SOURCE
+      objectReference: {fileID: 0}
+    - target: {fileID: 1135020230969119936, guid: f0fa74f9b2411e5469cfeca3d067685d, type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1135020230969119936, guid: f0fa74f9b2411e5469cfeca3d067685d, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: e1b5fc68b53ed5746910ae38eb515e21, type: 3}
+    - target: {fileID: 3197432535280474130, guid: f0fa74f9b2411e5469cfeca3d067685d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3197432535280474130, guid: f0fa74f9b2411e5469cfeca3d067685d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3197432535280474130, guid: f0fa74f9b2411e5469cfeca3d067685d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3197432535280474130, guid: f0fa74f9b2411e5469cfeca3d067685d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3197432535280474130, guid: f0fa74f9b2411e5469cfeca3d067685d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3197432535280474130, guid: f0fa74f9b2411e5469cfeca3d067685d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3197432535280474130, guid: f0fa74f9b2411e5469cfeca3d067685d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3197432535280474130, guid: f0fa74f9b2411e5469cfeca3d067685d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3197432535280474130, guid: f0fa74f9b2411e5469cfeca3d067685d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3197432535280474130, guid: f0fa74f9b2411e5469cfeca3d067685d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f0fa74f9b2411e5469cfeca3d067685d, type: 3}
 --- !u!1001 &2746007518933812533
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3496,6 +3561,7 @@ SceneRoots:
   - {fileID: 1335196749}
   - {fileID: 1347677443}
   - {fileID: 483947606}
+  - {fileID: 1131206234547220682}
   - {fileID: 280021204}
   - {fileID: 1166321840}
   - {fileID: 1375848094}

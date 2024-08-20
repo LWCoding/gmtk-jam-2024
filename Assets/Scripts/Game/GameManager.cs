@@ -94,12 +94,13 @@ public class GameManager : MonoBehaviour
         {
             RestaurantTiles[new(-2, -2)] = AllTileObjects[1];  // Stoves
             RestaurantTiles[new(-2, -1)] = AllTileObjects[1];
-            RestaurantTiles[new(0, 0)] = AllTileObjects[2];  // Table
+            RestaurantTiles[new(1, 0)] = AllTileObjects[2];  // Table
         }
     }
 
     private void Start()
     {
+        AudioManager.Instance.PlayOneShot(SFX.START_OF_NEXT_DAY);
         Camera.main.orthographicSize = CameraZoom;
         Camera.main.transform.position += new Vector3(0, CameraYOffset, -10);
         StartCoroutine(WaitThenScan());

@@ -66,6 +66,7 @@ public class TransitionManager : MonoBehaviour
     /// </summary>
     private void TransitionFadeIn()
     {
+        StartCoroutine(LerpAudio(1, 0));
         _transitionAnimator.gameObject.SetActive(true);
         _transitionAnimator.Play("Show");
         HasFadedInFromPrevScene = true;
@@ -76,9 +77,22 @@ public class TransitionManager : MonoBehaviour
     /// </summary>
     private void TransitionFadeOut()
     {
+        StartCoroutine(LerpAudio(0, 1));
         _transitionAnimator.gameObject.SetActive(true);
         _transitionAnimator.Play("Hide");
         HasFadedInFromPrevScene = false;
+    }
+
+    private IEnumerator LerpAudio(float fromVolume, float toVolume)
+    {
+        float currTime = 0;
+        float timeToWait = 0.2f;
+        while (currTime < timeToWait)
+        {
+            currTime += Time.deltaTime;
+            AudioManager.Instance.SetVolume(Mathf.Lerp(fromVolume, toVolume, currTime / timeToWait));
+            yield return null;
+        }
     }
 
 }

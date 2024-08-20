@@ -27,6 +27,7 @@ public class StoveTile : TileObject
         if (_panHandler != null)
         {
             Player.Instance.HoldItem(_panHandler.gameObject);
+            AudioManager.Instance.PlayOneShot(SFX.PLAYER_INTERACT);
             _panHandler = null;
             return;
         }
@@ -40,6 +41,7 @@ public class StoveTile : TileObject
 
         // Spawn the popup above the stove
         WorldTimer stoveTimer = Instantiate(StoveTimerPrefab);
+        AudioManager.Instance.PlayOneShot(SFX.COOKING_FOOD, 0.6f);
         stoveTimer.TickForSeconds(8);
         PopupManager.Instance.MovePopupThen(stoveTimer.gameObject, stovePosition + _popupOffset, 8, () =>
         {

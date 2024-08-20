@@ -29,6 +29,7 @@ public class CustomerHandler : MonoBehaviour
 
     private void Start()
     {
+        AudioManager.Instance.PlayOneShot(SFX.CUSTOMER_ENTER);
         StartCoroutine(WaitAndStartTracking());
     }
 
@@ -48,6 +49,7 @@ public class CustomerHandler : MonoBehaviour
                 transform.rotation = Quaternion.Lerp(Quaternion.Euler(0, 0, 180), Quaternion.Euler(0, 0, 0), currTime / timeToWait);
                 yield return null;
             }
+            AudioManager.Instance.PlayOneShot(SFX.CUSTOMER_EXIT);
             Destroy(gameObject);  // Destroy myself (leave)
         } 
         else
@@ -90,8 +92,10 @@ public class CustomerHandler : MonoBehaviour
         if (!_trackedTable.HasSeats())
         {
             FindTable();
+            yield break;
         }
-        
+
+        AudioManager.Instance.PlayOneShot(SFX.CUSTOMER_SIT_DOWN);
         _aiPath.enabled = false;  // Temporarily disable AI
         _ticketNumber = _trackedTable.SitPerson(this);
         Destroy(_createdTablePos);  // Delete temp object
@@ -106,6 +110,7 @@ public class CustomerHandler : MonoBehaviour
     {
         yield return new WaitForSeconds(1);
 
+        AudioManager.Instance.PlayOneShot(SFX.CUSTOMER_PAY);
         GameManager.Money += GameManager.MONEY_PER_OMELETTE;  // Make money
 
         _aiSetter.target = _doorTransform;
@@ -114,6 +119,7 @@ public class CustomerHandler : MonoBehaviour
         _trackedTable.RemovePerson(_ticketNumber);
 
         yield return new WaitUntil(() => Vector2.Distance(transform.position, _aiSetter.target.position) < DIST_TO_TABLE_BEFORE_SITTING);
+        AudioManager.Instance.PlayOneShot(SFX.CUSTOMER_EXIT); 
         Destroy(gameObject);
     }
 

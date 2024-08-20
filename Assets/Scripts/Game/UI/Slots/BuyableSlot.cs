@@ -73,6 +73,7 @@ public class BuyableSlot : SlotHandler
     {
         // If there's already something here, don't do anything
         if (TilemapManager.Instance.GetTileAtPosition(worldPos) != null) { return; }
+        AudioManager.Instance.PlayOneShot(SFX.BUILD_OBJECT); 
         GameManager.Money -= _tileObject.CostToBuy;  // Spend money
         TilemapManager.Instance.PlaceTileAt(worldPos, _tileObject);  // Place tile
     }

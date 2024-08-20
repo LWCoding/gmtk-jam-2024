@@ -28,6 +28,7 @@ public class SellSlot : SlotHandler
         if (TilemapManager.Instance.GetTileAtPosition(worldPos) == null) { return; }
         TileObject tileAtPosition = TilemapManager.Instance.GetTileAtPosition(worldPos);
         if (tileAtPosition == null) { return; }
+        AudioManager.Instance.PlayOneShot(SFX.SELL_OBJECT);
         GameManager.Money += tileAtPosition.CostToBuy / 2;
         TilemapManager.Instance.EraseTileAt(worldPos);  // Erase tile
     }
