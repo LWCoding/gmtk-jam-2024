@@ -58,7 +58,9 @@ MonoBehaviour:
   _playerInteract: {fileID: 8300000, guid: f2a4047f58cf8e141aac7987d57ae6d0, type: 3}
   _titleToDay: {fileID: 8300000, guid: 850ac2c131b15394ab8f530f0159bf88, type: 3}
   _startOfDay: {fileID: 8300000, guid: 9f236dae038729d4aa341d38aaacf1eb, type: 3}
-  _endOfDay: {fileID: 8300000, guid: c6121baa300f93a41b88e42651e067be, type: 3}
+  _winGame: {fileID: 8300000, guid: c6121baa300f93a41b88e42651e067be, type: 3}
+  _loseGame: {fileID: 8300000, guid: 2ef0c58849224994e93e0e96f0e715a3, type: 3}
+  _customerAngry: {fileID: 8300000, guid: c181c0df657aba24393ea946fad8219f, type: 3}
   _timesUpAlarm: {fileID: 8300000, guid: eb72f27fb830da247b301d14be8129fa, type: 3}
 --- !u!82 &1135020230969119936
 AudioSource:

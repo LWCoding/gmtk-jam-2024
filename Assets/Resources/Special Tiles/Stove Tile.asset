@@ -17,6 +17,6 @@ MonoBehaviour:
   IsPurchaseable: 1
   ShopName: Stove
   ShopDescription: Cooks food over 8s.
-  CostToBuy: 300
+  CostToBuy: 80
   StoveTimerPrefab: {fileID: 1980879637598166309, guid: 61edc9862930c4848867b93b58def2fa, type: 3}
   StovePanPrefab: {fileID: 7358161516763592878, guid: 8a9da388f323da3439c9544fa6180db3, type: 3}

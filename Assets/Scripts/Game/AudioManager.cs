@@ -17,8 +17,10 @@ public enum SFX
     PLAYER_INTERACT = 10,
     TITLE_TO_DAY = 11,
     START_OF_NEXT_DAY = 12,
-    END_OF_DAY = 13,
-    TIMES_UP_ALARM = 14
+    DAY_WIN = 13,
+    TIMES_UP_ALARM = 14,
+    CUSTOMER_ANGRY = 15,
+    DAY_LOSE = 16
 }
 
 [RequireComponent(typeof(AudioSource))]
@@ -39,7 +41,9 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioClip _playerInteract;
     [SerializeField] private AudioClip _titleToDay;
     [SerializeField] private AudioClip _startOfDay;
-    [SerializeField] private AudioClip _endOfDay;
+    [SerializeField] private AudioClip _winGame;
+    [SerializeField] private AudioClip _loseGame;
+    [SerializeField] private AudioClip _customerAngry;
     [SerializeField] private AudioClip _timesUpAlarm;
 
     private static AudioManager _instance;
@@ -108,8 +112,12 @@ public class AudioManager : MonoBehaviour
                 return _titleToDay;
             case SFX.START_OF_NEXT_DAY:
                 return _startOfDay;
-            case SFX.END_OF_DAY:
-                return _endOfDay;
+            case SFX.DAY_WIN:
+                return _winGame;
+            case SFX.DAY_LOSE:
+                return _loseGame;
+            case SFX.CUSTOMER_ANGRY:
+                return _customerAngry;
             case SFX.TIMES_UP_ALARM:
                 return _timesUpAlarm;
             default:

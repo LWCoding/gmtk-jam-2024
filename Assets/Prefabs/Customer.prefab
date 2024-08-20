@@ -132,6 +132,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 053fe1613219a7e45a0e784e90c814e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _spriteRenderer: {fileID: 3565189596550790362}
+  _annoyedSprite: {fileID: 21300000, guid: 0a67d8f6e3eedf644ac0048beb4d793a, type: 3}
+  _enragedSprite: {fileID: 21300000, guid: 3a45e2741c227ed4d9749304f8394ebc, type: 3}
 --- !u!1 &3320075260624855057
 GameObject:
   m_ObjectHideFlags: 0

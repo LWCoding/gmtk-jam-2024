@@ -9,6 +9,13 @@ using UnityEngine;
 public class CustomerHandler : MonoBehaviour
 {
 
+    [Header("Object Assignments")]
+    [SerializeField] private SpriteRenderer _spriteRenderer;
+    [Header("Image Assignments")]
+    [SerializeField] private Sprite _normalSprite;
+    [SerializeField] private Sprite _annoyedSprite;
+    [SerializeField] private Sprite _enragedSprite;
+
     private AIPath _aiPath;
     private AIDestinationSetter _aiSetter;
     private TableTile _trackedTable;
@@ -17,7 +24,11 @@ public class CustomerHandler : MonoBehaviour
     private Transform _doorTransform;
 
     private int _ticketNumber;
+    private bool _hasBeenServed = false;
 
+    private const float TIME_BEFORE_ANNOYED = 8;
+    private const float TIME_BEFORE_ENRAGED = 13;
+    private const float TIME_BEFORE_LEAVING = 15;
     private const float DIST_TO_TABLE_BEFORE_SITTING = 0.8f;
 
     private void Awake()
@@ -99,6 +110,31 @@ public class CustomerHandler : MonoBehaviour
         _aiPath.enabled = false;  // Temporarily disable AI
         _ticketNumber = _trackedTable.SitPerson(this);
         Destroy(_createdTablePos);  // Delete temp object
+
+        float currTime = 0f;
+
+        while (currTime < TIME_BEFORE_LEAVING)
+        {
+            currTime += Time.deltaTime;
+            // If we've been served, don't keep waiting
+            if (_hasBeenServed)
+            {
+                yield break;
+            }
+            // If enough time has passed to become enraged, make customer mad
+            if (currTime > TIME_BEFORE_ENRAGED)
+            {
+                AudioManager.Instance.PlayOneShot(SFX.CUSTOMER_ANGRY);
+                _spriteRenderer.sprite = _enragedSprite;
+            } else if (currTime > TIME_BEFORE_ANNOYED)
+            {
+                _spriteRenderer.sprite = _annoyedSprite;
+            }
+            yield return null;
+        }
+
+        // If we reach this point, make the customer leave because they're mad
+        Leave();
     }
 
     public void EatServedFood()
@@ -108,18 +144,31 @@ public class CustomerHandler : MonoBehaviour
 
     private IEnumerator EatServedFoodCoroutine()
     {
+        _hasBeenServed = true;
+        _spriteRenderer.sprite = _normalSprite;
+
         yield return new WaitForSeconds(1);
 
         AudioManager.Instance.PlayOneShot(SFX.CUSTOMER_PAY);
         GameManager.Money += GameManager.MONEY_PER_OMELETTE;  // Make money
 
+        Leave();
+    }
+
+    private void Leave()
+    {
+        StartCoroutine(LeaveCoroutine());
+    }
+
+    private IEnumerator LeaveCoroutine()
+    {
         _aiSetter.target = _doorTransform;
         _aiPath.enabled = true;  // Make this go back to the door before destroying
 
         _trackedTable.RemovePerson(_ticketNumber);
 
         yield return new WaitUntil(() => Vector2.Distance(transform.position, _aiSetter.target.position) < DIST_TO_TABLE_BEFORE_SITTING);
-        AudioManager.Instance.PlayOneShot(SFX.CUSTOMER_EXIT); 
+        AudioManager.Instance.PlayOneShot(SFX.CUSTOMER_EXIT);
         Destroy(gameObject);
     }
 

@@ -17,7 +17,7 @@ MonoBehaviour:
   IsPurchaseable: 1
   ShopName: Table
   ShopDescription: Seats 1 person for each empty adjacent tile.
-  CostToBuy: 150
+  CostToBuy: 40
   PossibleSeatPositions: []
   PossibleSeatRotations: []
   SeatedPeople: []
