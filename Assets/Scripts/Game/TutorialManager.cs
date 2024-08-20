@@ -16,13 +16,19 @@ public class TutorialManager : MonoBehaviour
     {
         if (!HasPlayedTutorialBefore)
         {
-            Time.timeScale = 0;
+            StartCoroutine(WaitUntilFadeIsGoneCoroutine());
             _tutorialAnimator.gameObject.SetActive(true);
             HasPlayedTutorialBefore = true;
         } else
         {
             _tutorialAnimator.gameObject.SetActive(false);
         }
+    }
+
+    private IEnumerator WaitUntilFadeIsGoneCoroutine()
+    {
+        yield return new WaitForSeconds(0.5f);
+        Time.timeScale = 0;
     }
 
     public void HideTutorialObject()
