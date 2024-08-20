@@ -82,6 +82,17 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        StartCoroutine(WaitThenScan());
+    }
+
+    private IEnumerator WaitThenScan()
+    {
+        yield return new WaitForEndOfFrame();
+        AstarPath.active.Scan();
+    }
+
     /// <summary>
     /// Increment the timer if we haven't hit the maximum seconds in a day.
     /// </summary>
