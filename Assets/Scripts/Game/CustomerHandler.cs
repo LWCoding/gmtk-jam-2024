@@ -124,7 +124,6 @@ public class CustomerHandler : MonoBehaviour
             // If enough time has passed to become enraged, make customer mad
             if (currTime > TIME_BEFORE_ENRAGED)
             {
-                AudioManager.Instance.PlayOneShot(SFX.CUSTOMER_ANGRY);
                 _spriteRenderer.sprite = _enragedSprite;
             } else if (currTime > TIME_BEFORE_ANNOYED)
             {
@@ -134,6 +133,7 @@ public class CustomerHandler : MonoBehaviour
         }
 
         // If we reach this point, make the customer leave because they're mad
+        _trackedTable.RemoveLatestPerson();
         Leave();
     }
 
@@ -150,7 +150,7 @@ public class CustomerHandler : MonoBehaviour
         yield return new WaitForSeconds(1);
 
         AudioManager.Instance.PlayOneShot(SFX.CUSTOMER_PAY);
-        GameManager.Money += GameManager.MONEY_PER_OMELETTE;  // Make money
+        GameManager.Money += GameManager.MONEY_PER_OMELETTE + GameManager.Instance.DecorBuff;  // Make money
 
         Leave();
     }
@@ -167,6 +167,7 @@ public class CustomerHandler : MonoBehaviour
 
         _trackedTable.RemovePerson(_ticketNumber);
 
+        yield return new WaitForEndOfFrame();
         yield return new WaitUntil(() => Vector2.Distance(transform.position, _aiSetter.target.position) < DIST_TO_TABLE_BEFORE_SITTING);
         AudioManager.Instance.PlayOneShot(SFX.CUSTOMER_EXIT);
         Destroy(gameObject);

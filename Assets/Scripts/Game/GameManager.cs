@@ -68,7 +68,7 @@ public class GameManager : MonoBehaviour
 
     public static int MONEY_PER_OMELETTE = 8;
 
-    public float DecorBuff = 0;  // Decor buff for current level
+    public int DecorBuff = 0;  // Decor buff for current level
 
     public static Action<int> OnMoneyChanged = null;  // Param is new amount of money
     public static Action<int, int> OnTimerChanged = null;  // Param is current time and max time
@@ -92,9 +92,9 @@ public class GameManager : MonoBehaviour
 
         if (RestaurantTiles.Count == 0)
         {
-            RestaurantTiles[new(-2, -2)] = AllTileObjects[1];  // Stoves
-            RestaurantTiles[new(-2, -1)] = AllTileObjects[1];
-            RestaurantTiles[new(1, 0)] = AllTileObjects[2];  // Table
+            RestaurantTiles[new(-1, -1)] = AllTileObjects[1];  // Stoves
+            RestaurantTiles[new(0, -1)] = AllTileObjects[1];
+            RestaurantTiles[new(1, 1)] = AllTileObjects[2];  // Table
         }
     }
 

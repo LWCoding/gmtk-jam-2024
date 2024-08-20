@@ -11,8 +11,13 @@ public class UIManager : MonoBehaviour
     [Header("Object Assignments")]
     [SerializeField] private TextMeshProUGUI _moneyText;
     [SerializeField] private TextMeshProUGUI _quotaText;
+    [SerializeField] private TextMeshProUGUI _quotaMaxText;
     [SerializeField] private Image _timerFillImage;
     [SerializeField] private TextMeshProUGUI _timerDayText;
+    [Header("End Screen Assignments")]
+    [SerializeField] private Animator _dayEndAnimator;
+    [SerializeField] private TextMeshProUGUI _endText;
+    [SerializeField] private TextMeshProUGUI _endSubtext;
 
     private int _moneyAtStartOfDay;
 
@@ -73,19 +78,32 @@ public class UIManager : MonoBehaviour
             if (GameManager.Money - _moneyAtStartOfDay >= GameManager.CurrentQuota)
             {
                 // Met quota!
-                TransitionManager.Instance.TransitionAndCall(() =>
-                {
-                    SceneManager.LoadScene("Night");
-                });
+                AudioManager.Instance.PlayOneShot(SFX.DAY_WIN);
+                StartCoroutine(EndScreenCoroutine("Quota Met!", "Time to prepare for tomorrow...", Color.green, "Night"));
             } else
             {
                 // Failed quota. Lost.
-                TransitionManager.Instance.TransitionAndCall(() =>
-                {
-                    SceneManager.LoadScene("Title");
-                });
+                AudioManager.Instance.PlayOneShot(SFX.DAY_LOSE);
+                StartCoroutine(EndScreenCoroutine("Quota Failed!", "You're fired...", Color.red, "Title"));
             }
         }
+    }
+
+    private IEnumerator EndScreenCoroutine(string mainText, string subText, Color mainTextColor, string sceneToTransitionTo)
+    {
+        // Stop stuff from happening
+        FindObjectOfType<CustomerSpawner>().enabled = false;
+        FindObjectOfType<PlayerMovement>().enabled = false;
+        _endText.text = mainText;
+        _endText.color = mainTextColor;
+        _endSubtext.text = subText;
+        _dayEndAnimator.Play("Show");
+        yield return new WaitForEndOfFrame();
+        yield return new WaitUntil(() => _dayEndAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f);
+        TransitionManager.Instance.TransitionAndCall(() =>
+        {
+            SceneManager.LoadScene(sceneToTransitionTo);
+        });
     }
 
     /// <summary>
@@ -126,10 +144,11 @@ public class UIManager : MonoBehaviour
     private void UpdateQuotaText(int money)
     {
         int earnedMoney = money - _moneyAtStartOfDay;
-        _quotaText.text = "$" + earnedMoney.ToString() + "/" + GameManager.CurrentQuota;
+        _quotaText.text = "$" + earnedMoney.ToString();
+        _quotaMaxText.text = "$" + GameManager.CurrentQuota;
         if (earnedMoney > GameManager.CurrentQuota)
         {
-            _quotaText.color = Color.green;
+            _quotaText.color = new Color(0, 0.55f, 0);
         } else
         {
             _quotaText.color = Color.red;

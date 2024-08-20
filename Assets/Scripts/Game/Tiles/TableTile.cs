@@ -64,6 +64,11 @@ public class TableTile : TileObject
         Player.Instance.DropItem();
     }
 
+    public void RemoveLatestPerson()
+    {
+        SeatedPeople.RemoveAt(0);
+    }
+
     public void RemovePerson(int availableSeatIdx)
     {
         AvailableSeats.Add(availableSeatIdx);

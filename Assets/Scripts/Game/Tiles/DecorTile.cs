@@ -7,7 +7,7 @@ public class DecorTile : TileObject
 {
 
     [Header("Decor Boosts")]
-    public float DecorBuff;
+    public int DecorBuff;
 
     public override void Initialize(Vector3Int position)
     {

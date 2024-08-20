@@ -18,4 +18,4 @@ MonoBehaviour:
   ShopName: Rose Bush
   ShopDescription: Passive decor bonus. Increases money made.
   CostToBuy: 16
-  DecorBuff: 25
+  DecorBuff: 2
