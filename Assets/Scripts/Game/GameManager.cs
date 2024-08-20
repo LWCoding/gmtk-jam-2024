@@ -87,13 +87,14 @@ public class GameManager : MonoBehaviour
     public static void Initialize()
     {
         AllTileObjects = new(Resources.LoadAll<TileObject>("Special Tiles"));
+        AllTileObjects.Sort((a, b) => a.CostToBuy - b.CostToBuy);
         Money = 100;  // Starting amount of money
         Timer = 0;  // Start off at zero seconds
 
         if (RestaurantTiles.Count == 0)
         {
-            RestaurantTiles[new(-1, -1)] = AllTileObjects[1];  // Stoves
-            RestaurantTiles[new(0, -1)] = AllTileObjects[1];
+            RestaurantTiles[new(-1, -1)] = AllTileObjects[4];  // Stoves
+            RestaurantTiles[new(0, -1)] = AllTileObjects[4];
             RestaurantTiles[new(1, 1)] = AllTileObjects[2];  // Table
         }
     }

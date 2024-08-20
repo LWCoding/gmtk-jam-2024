@@ -93,6 +93,8 @@ public class CustomerHandler : MonoBehaviour
                 return;
             }
         }
+        // If we found no table, leave
+        Leave();
     }
 
     private IEnumerator WaitUntilNearTable()
