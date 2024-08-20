@@ -575,6 +575,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f84e94a67bac0145bf3b643942ecdb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DecorBuff: 0
 --- !u!114 &483947608
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -618,6 +619,7 @@ MonoBehaviour:
   _floorTile: {fileID: 11400000, guid: 0c99637d837cf524f9b5190f896928dd, type: 2}
   _wallTile: {fileID: 11400000, guid: 6c230a6e1a3bcd045beadc1005d99a7e, type: 2}
   _obstacleTilemap: {fileID: 2005421027}
+  _pathfinding: {fileID: 1347677444}
 --- !u!114 &483947612
 MonoBehaviour:
   m_ObjectHideFlags: 0

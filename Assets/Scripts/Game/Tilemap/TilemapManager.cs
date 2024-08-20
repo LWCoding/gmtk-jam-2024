@@ -1,3 +1,4 @@
+using Pathfinding;
 using NaughtyAttributes;
 using System.Collections;
 using System.Collections.Generic;
@@ -31,6 +32,7 @@ public abstract class TilemapManager : MonoBehaviour
     [SerializeField] protected TileBase _wallTile;
     [Header("Obstacle Tilemap")]
     [SerializeField] protected Tilemap _obstacleTilemap;
+    [SerializeField] private AstarPath _pathfinding;
 
     protected Dictionary<Vector3Int, TileObject> _tileObjects = new();
     protected List<Vector3Int> _ghostTilePositions = new();
@@ -109,10 +111,14 @@ public abstract class TilemapManager : MonoBehaviour
             obj.ShopName = GameManager.RestaurantTiles[pos].ShopName;
             obj.ShopDescription = GameManager.RestaurantTiles[pos].ShopDescription;
             obj.CostToBuy = GameManager.RestaurantTiles[pos].CostToBuy;
-            if (obj is StoveTile tile)
+            if (obj is StoveTile stoveTile)
             {
-                tile.StoveTimerPrefab = ((StoveTile)GameManager.RestaurantTiles[pos]).StoveTimerPrefab;
-                tile.StovePanPrefab = ((StoveTile)GameManager.RestaurantTiles[pos]).StovePanPrefab;
+                stoveTile.StoveTimerPrefab = ((StoveTile)GameManager.RestaurantTiles[pos]).StoveTimerPrefab;
+                stoveTile.StovePanPrefab = ((StoveTile)GameManager.RestaurantTiles[pos]).StovePanPrefab;
+            }
+            if (obj is DecorTile decorTile)
+            {
+                decorTile.DecorBuff = ((DecorTile)GameManager.RestaurantTiles[pos]).DecorBuff; 
             }
 
             obj.Initialize(pos);
