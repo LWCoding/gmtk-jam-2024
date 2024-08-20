@@ -19,3 +19,6 @@ MonoBehaviour:
   ShopDescription: Seats 1 person for each empty adjacent tile.
   CostToBuy: 150
   PossibleSeatPositions: []
+  PossibleSeatRotations: []
+  SeatedPeople: []
+  AvailableSeats: 

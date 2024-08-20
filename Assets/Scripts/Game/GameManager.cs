@@ -43,6 +43,8 @@ public class GameManager : MonoBehaviour
     private static int _timer;
     private const int SECS_IN_DAY = 60;
 
+    public const int MONEY_PER_OMELETTE = 8;
+
     public static Dictionary<Vector3Int, TileObject> RestaurantTiles = new();  // To persist between scenes
 
     public static int TilemapLeftLimit = -2;

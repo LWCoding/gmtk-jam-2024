@@ -16,6 +16,8 @@ public class CustomerHandler : MonoBehaviour
 
     private Transform _doorTransform;
 
+    private int _ticketNumber;
+
     private const float DIST_TO_TABLE_BEFORE_SITTING = 0.8f;
 
     private void Awake()
@@ -91,7 +93,7 @@ public class CustomerHandler : MonoBehaviour
         }
         
         _aiPath.enabled = false;  // Temporarily disable AI
-        _trackedTable.SitPerson(this);
+        _ticketNumber = _trackedTable.SitPerson(this);
         Destroy(_createdTablePos);  // Delete temp object
     }
 
@@ -106,6 +108,8 @@ public class CustomerHandler : MonoBehaviour
 
         _aiSetter.target = _doorTransform;
         _aiPath.enabled = true;  // Make this go back to the door before destroying
+
+        _trackedTable.RemovePerson(_ticketNumber);
 
         yield return new WaitUntil(() => Vector2.Distance(transform.position, _aiSetter.target.position) < DIST_TO_TABLE_BEFORE_SITTING);
         Destroy(gameObject);

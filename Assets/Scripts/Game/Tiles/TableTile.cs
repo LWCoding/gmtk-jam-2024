@@ -10,12 +10,15 @@ public class TableTile : TileObject
 
     public List<Vector3> PossibleSeatPositions = new();
     public List<Quaternion> PossibleSeatRotations = new();
-    private List<CustomerHandler> SeatedPeople = new();
+    public List<CustomerHandler> SeatedPeople = new();
+
+    public List<int> AvailableSeats = new();
 
     public override void Initialize(Vector3Int position)
     {
         PossibleSeatPositions = new();
         PossibleSeatRotations = new();
+        AvailableSeats = new();
         SeatedPeople = new();
         var tileObjects = TilemapManager.Instance.TileObjects;
         Vector3Int[] offsets = { new(-1, 0), new(1, 0), new(0, 1), new(0, -1) };
@@ -28,10 +31,12 @@ public class TableTile : TileObject
                 // Calculate the angle in degrees
                 float angle = Mathf.Atan2(offset.y, offset.x) * Mathf.Rad2Deg;
 
+                AvailableSeats.Add(PossibleSeatPositions.Count);
                 PossibleSeatPositions.Add(adjPosition + new Vector3(0.5f, 0.5f));
                 PossibleSeatRotations.Add(Quaternion.Euler(0, 0, angle));
             }
         }
+        Debug.Log(AvailableSeats.Count);
     }
 
     public bool HasSeats()
@@ -39,23 +44,35 @@ public class TableTile : TileObject
         return SeatedPeople.Count < PossibleSeatPositions.Count;
     }
 
-    public void SitPerson(CustomerHandler customerHandler)
+    public int SitPerson(CustomerHandler customerHandler)
     {
         GameObject personObject = customerHandler.gameObject;
-        personObject.transform.position = PossibleSeatPositions[SeatedPeople.Count];
-        personObject.transform.localRotation = PossibleSeatRotations[SeatedPeople.Count];
+        int availableSeatIdx = AvailableSeats[0];
+        AvailableSeats.RemoveAt(0);
+        personObject.transform.position = PossibleSeatPositions[availableSeatIdx];
+        personObject.transform.localRotation = PossibleSeatRotations[availableSeatIdx];
+        personObject.transform.position -= personObject.transform.right * 0.35f;
         personObject.transform.Rotate(0, 0, 90);
         SeatedPeople.Add(customerHandler);
+        return availableSeatIdx;
     }
 
     public override void Interact(Vector3Int position)
     {
-        Player.Instance.DropItem();  // Call EatServeDfood on SEatedPoeple instead
+        if (SeatedPeople.Count == 0) { return; }  // Only interactable with people seated
+        SeatedPeople[0].EatServedFood();
+        Player.Instance.DropItem();
+    }
+
+    public void RemovePerson(int availableSeatIdx)
+    {
+        SeatedPeople.RemoveAt(availableSeatIdx);
+        AvailableSeats.Add(availableSeatIdx);
     }
 
     public override void OnEnterInteractRange(Vector3Int position)
     {
-        IsInteractable = Player.Instance.IsHoldingItem();
+        IsInteractable = SeatedPeople.Count > 0 && Player.Instance.IsHoldingItem();
     }
 
     public override void OnExitInteractRange(Vector3Int position)

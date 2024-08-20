@@ -102,8 +102,21 @@ public abstract class TilemapManager : MonoBehaviour
     {
         foreach (Vector3Int pos in GameManager.RestaurantTiles.Keys)
         {
-            PlaceTileAt(pos, GameManager.RestaurantTiles[pos]);
-            GameManager.RestaurantTiles[pos].Initialize(pos);
+            TileObject obj = (TileObject)ScriptableObject.CreateInstance(GameManager.RestaurantTiles[pos].GetType());
+            obj.Tile = GameManager.RestaurantTiles[pos].Tile;
+            obj.IsInteractable = GameManager.RestaurantTiles[pos].IsInteractable;
+            obj.IsPurchaseable = GameManager.RestaurantTiles[pos].IsPurchaseable;
+            obj.ShopName = GameManager.RestaurantTiles[pos].ShopName;
+            obj.ShopDescription = GameManager.RestaurantTiles[pos].ShopDescription;
+            obj.CostToBuy = GameManager.RestaurantTiles[pos].CostToBuy;
+            if (obj is StoveTile tile)
+            {
+                tile.StoveTimerPrefab = ((StoveTile)GameManager.RestaurantTiles[pos]).StoveTimerPrefab;
+                tile.StovePanPrefab = ((StoveTile)GameManager.RestaurantTiles[pos]).StovePanPrefab;
+            }
+
+            obj.Initialize(pos);
+            PlaceTileAt(pos, obj);
         }
     }
 
