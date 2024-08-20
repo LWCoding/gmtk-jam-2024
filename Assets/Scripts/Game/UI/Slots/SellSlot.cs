@@ -22,12 +22,14 @@ public class SellSlot : SlotHandler
 
     }
 
-    public override void RenderLogicAt(Vector3 pos)
+    public override void RenderLogicAt(Vector3 worldPos)
     {
-        TileObject tileAtPosition = TilemapManager.Instance.GetTileAtPosition(pos);
+        // If there's nothing here, don't do anything
+        if (TilemapManager.Instance.GetTileAtPosition(worldPos) == null) { return; }
+        TileObject tileAtPosition = TilemapManager.Instance.GetTileAtPosition(worldPos);
         if (tileAtPosition == null) { return; }
         GameManager.Money += tileAtPosition.CostToBuy / 2;
-        TilemapManager.Instance.EraseTileAt(pos);  // Erase tile
+        TilemapManager.Instance.EraseTileAt(worldPos);  // Erase tile
     }
 
 }

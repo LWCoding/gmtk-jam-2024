@@ -46,7 +46,7 @@ public abstract class SlotHandler : MonoBehaviour, IPointerDownHandler, IPointer
         // Get tile at position
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         TilemapManager.Instance.EraseAllGhostTiles();  // Erase ghost tiles to make room
-        if (TilemapManager.Instance.GetTileAtPosition(mousePos) == null)
+        if (TilemapManager.Instance.IsValidTile(mousePos))
         {
             RenderLogicAt(mousePos);
         }

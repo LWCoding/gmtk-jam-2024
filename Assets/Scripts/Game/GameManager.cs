@@ -92,7 +92,10 @@ public class GameManager : MonoBehaviour
     private IEnumerator WaitThenScan()
     {
         yield return new WaitForEndOfFrame();
-        AstarPath.active.Scan();
+        if (AstarPath.active != null)
+        {
+            AstarPath.active.Scan();
+        }
     }
 
     /// <summary>

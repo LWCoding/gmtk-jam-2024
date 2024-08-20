@@ -71,6 +71,8 @@ public class BuyableSlot : SlotHandler
 
     public override void RenderLogicAt(Vector3 worldPos)
     {
+        // If there's already something here, don't do anything
+        if (TilemapManager.Instance.GetTileAtPosition(worldPos) != null) { return; }
         GameManager.Money -= _tileObject.CostToBuy;  // Spend money
         TilemapManager.Instance.PlaceTileAt(worldPos, _tileObject);  // Place tile
     }

@@ -135,8 +135,9 @@ public abstract class TilemapManager : MonoBehaviour
         }
     }
 
-    public bool IsValidTile(Vector3Int pos)
+    public bool IsValidTile(Vector3 pos)
     {
+        
         return pos.x >= GameManager.TilemapLeftLimit && pos.x < GameManager.TilemapRightLimit &&
                pos.y >= GameManager.TilemapDownLimit && pos.y < GameManager.TilemapUpLimit;
     }
