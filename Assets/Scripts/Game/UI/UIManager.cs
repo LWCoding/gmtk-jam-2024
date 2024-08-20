@@ -23,7 +23,6 @@ public class UIManager : MonoBehaviour
 
     private void OnEnable()
     {
-        _moneyAtStartOfDay = GameManager.Money;
         if (_moneyText != null)
         {
             GameManager.OnMoneyChanged += UpdateMoneyText;
@@ -55,6 +54,11 @@ public class UIManager : MonoBehaviour
         {
             UpdateMoneyText(GameManager.Money);  // Update money amount to the global one
         }
+    }
+
+    private void Start()
+    {
+        _moneyAtStartOfDay = GameManager.Money;
         if (_quotaText != null)
         {
             UpdateQuotaText(GameManager.Money);

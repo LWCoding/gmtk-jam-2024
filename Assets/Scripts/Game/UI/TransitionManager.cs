@@ -26,18 +26,10 @@ public class TransitionManager : MonoBehaviour
 
     private void Awake()
     {
-        _transitionAnimator.gameObject.SetActive(false);
         if (Instance != this)
         {
             Destroy(this);
         }
-    }
-
-    /// <summary>
-    /// At the start of the game, if we've faded to black, fade back into transparency.
-    /// </summary>
-    private void Start()
-    {
         if (HasFadedInFromPrevScene)
         {
             TransitionFadeOut();
@@ -67,7 +59,6 @@ public class TransitionManager : MonoBehaviour
     private void TransitionFadeIn()
     {
         StartCoroutine(LerpAudio(1, 0));
-        _transitionAnimator.gameObject.SetActive(true);
         _transitionAnimator.Play("Show");
         HasFadedInFromPrevScene = true;
     }
@@ -78,7 +69,7 @@ public class TransitionManager : MonoBehaviour
     private void TransitionFadeOut()
     {
         StartCoroutine(LerpAudio(0, 1));
-        _transitionAnimator.gameObject.SetActive(true);
+        Debug.Log("Playing hide animation");
         _transitionAnimator.Play("Hide");
         HasFadedInFromPrevScene = false;
     }
