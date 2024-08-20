@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
         }
     }
     private static int _timer;
-    private const int SECS_IN_DAY = 60;
+    public const int SECS_IN_DAY = 60;
 
     public static Dictionary<Vector3Int, TileObject> RestaurantTiles = new();  // To persist between scenes
 
@@ -81,7 +81,7 @@ public class GameManager : MonoBehaviour
         {
             Destroy(this);
         }
-        InvokeRepeating(nameof(IncrementTimer), 0, 1);
+        InvokeRepeating(nameof(IncrementTimer), 1, 1);
     }
 
     public static void Initialize()

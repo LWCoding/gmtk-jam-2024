@@ -93,19 +93,22 @@ public class CustomerHandler : MonoBehaviour
                 return;
             }
         }
-        // If we found no table, leave
-        Leave();
     }
 
     private IEnumerator WaitUntilNearTable()
     {
         yield return new WaitUntil(() => Vector2.Distance(transform.position, _aiSetter.target.position) < DIST_TO_TABLE_BEFORE_SITTING);
-        
+
         // If the table we were tracking is taken up, find another table
         if (!_trackedTable.HasSeats())
         {
             FindTable();
-            yield break;
+            // If we couldn't find a table again, just leave
+            if (!_trackedTable.HasSeats())
+            {
+                Leave(false);
+                yield break;
+            }
         }
 
         AudioManager.Instance.PlayOneShot(SFX.CUSTOMER_SIT_DOWN);
@@ -136,7 +139,7 @@ public class CustomerHandler : MonoBehaviour
 
         // If we reach this point, make the customer leave because they're mad
         _trackedTable.RemoveLatestPerson();
-        Leave();
+        Leave(true);
     }
 
     public void EatServedFood()
@@ -154,20 +157,23 @@ public class CustomerHandler : MonoBehaviour
         AudioManager.Instance.PlayOneShot(SFX.CUSTOMER_PAY);
         GameManager.Money += GameManager.MONEY_PER_OMELETTE + GameManager.Instance.DecorBuff;  // Make money
 
-        Leave();
+        Leave(true);
     }
 
-    private void Leave()
+    private void Leave(bool isSeated)
     {
-        StartCoroutine(LeaveCoroutine());
+        StartCoroutine(LeaveCoroutine(isSeated));
     }
 
-    private IEnumerator LeaveCoroutine()
+    private IEnumerator LeaveCoroutine(bool isSeated)
     {
         _aiSetter.target = _doorTransform;
         _aiPath.enabled = true;  // Make this go back to the door before destroying
 
-        _trackedTable.RemovePerson(_ticketNumber);
+        if (isSeated)
+        {
+            _trackedTable.RemovePerson(_ticketNumber);
+        }
 
         yield return new WaitForEndOfFrame();
         yield return new WaitUntil(() => Vector2.Distance(transform.position, _aiSetter.target.position) < DIST_TO_TABLE_BEFORE_SITTING);

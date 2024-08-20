@@ -45,8 +45,12 @@ public class UIManager : MonoBehaviour
         GameManager.OnMoneyChanged -= UpdateQuotaText;
     }
 
-    private void Start()
+    private void Awake()
     {
+        if (_timerFillImage != null)
+        {
+            UpdateTimerValue(GameManager.Timer, GameManager.SECS_IN_DAY);
+        }
         if (_moneyText != null)
         {
             UpdateMoneyText(GameManager.Money);  // Update money amount to the global one
