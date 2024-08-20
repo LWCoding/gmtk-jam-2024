@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eef002f85ad7bc542a5a2bc2f3ac1600, type: 3}
-  m_Name: Rose Bush Tile
+  m_Name: Jukebox Tile
   m_EditorClassIdentifier: 
-  Tile: {fileID: 11400000, guid: 318fdc4957da6a840b7e6540e3aac3fd, type: 2}
+  Tile: {fileID: 11400000, guid: c23ec2b89ffaf1d4b8ce174cda6e34d3, type: 2}
   IsInteractable: 0
   IsPurchaseable: 1
-  ShopName: Rose Bush
+  ShopName: Jukebox
   ShopDescription: Passive decor bonus. Increases money made.
-  CostToBuy: 40
-  DecorBuff: 4
+  CostToBuy: 200
+  DecorBuff: 20
