@@ -57,6 +57,11 @@ public abstract class TilemapManager : MonoBehaviour
         {
             Destroy(this);
         }
+        // If it's the day scene, increment day and set quota
+        if (SceneManager.GetActiveScene().name == "Day")
+        {
+            GameManager.DayNumber++;
+        }
         // If it's the night scene, make the kitchen bigger
         if (SceneManager.GetActiveScene().name == "Night")
         {

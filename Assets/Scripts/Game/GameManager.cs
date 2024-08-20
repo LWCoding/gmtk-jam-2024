@@ -52,6 +52,22 @@ public class GameManager : MonoBehaviour
     public static float CameraZoom = 3.4f;
     public static float CameraYOffset = 0;
 
+    public static int DayNumber = 0;  // Running count for current day
+    public static int CurrentQuota  // Quota needed to complete day
+    {
+        get
+        {
+            int quota = 5 * MONEY_PER_OMELETTE;
+            for (int i = 0; i < DayNumber; i++)
+            {
+                quota += (int)Mathf.Ceil(DayNumber / 2) * MONEY_PER_OMELETTE;
+            }
+            return quota;
+        }
+    }
+
+    public static int MONEY_PER_OMELETTE = 8;
+
     public float DecorBuff = 0;  // Decor buff for current level
 
     public static Action<int> OnMoneyChanged = null;  // Param is new amount of money
@@ -71,14 +87,14 @@ public class GameManager : MonoBehaviour
     public static void Initialize()
     {
         AllTileObjects = new(Resources.LoadAll<TileObject>("Special Tiles"));
-        Money = 1000;  // Starting amount of money
+        Money = 100;  // Starting amount of money
         Timer = 0;  // Start off at zero seconds
 
         if (RestaurantTiles.Count == 0)
         {
             RestaurantTiles[new(-2, -2)] = AllTileObjects[1];  // Stoves
             RestaurantTiles[new(-2, -1)] = AllTileObjects[1];
-            RestaurantTiles[new(1, 1)] = AllTileObjects[2];  // Table
+            RestaurantTiles[new(0, 0)] = AllTileObjects[2];  // Table
         }
     }
 

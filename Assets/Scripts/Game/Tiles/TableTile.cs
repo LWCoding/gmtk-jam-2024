@@ -36,7 +36,6 @@ public class TableTile : TileObject
                 PossibleSeatRotations.Add(Quaternion.Euler(0, 0, angle));
             }
         }
-        Debug.Log(AvailableSeats.Count);
     }
 
     public bool HasSeats()
@@ -61,12 +60,12 @@ public class TableTile : TileObject
     {
         if (SeatedPeople.Count == 0) { return; }  // Only interactable with people seated
         SeatedPeople[0].EatServedFood();
+        SeatedPeople.RemoveAt(0);
         Player.Instance.DropItem();
     }
 
     public void RemovePerson(int availableSeatIdx)
     {
-        SeatedPeople.RemoveAt(availableSeatIdx);
         AvailableSeats.Add(availableSeatIdx);
     }
 

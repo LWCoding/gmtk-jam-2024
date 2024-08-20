@@ -3,17 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
 
     [Header("Object Assignments")]
     [SerializeField] private TextMeshProUGUI _moneyText;
+    [SerializeField] private TextMeshProUGUI _quotaText;
     [SerializeField] private Image _timerFillImage;
     [SerializeField] private TextMeshProUGUI _timerDayText;
 
+    private int _moneyAtStartOfDay;
+
     private void OnEnable()
     {
+        _moneyAtStartOfDay = GameManager.Money;
         if (_moneyText != null)
         {
             GameManager.OnMoneyChanged += UpdateMoneyText;
@@ -22,17 +27,23 @@ public class UIManager : MonoBehaviour
         {
             GameManager.OnTimerChanged += UpdateTimerValue;
         }
+        if (_quotaText != null)
+        {
+            GameManager.OnMoneyChanged += UpdateQuotaText;
+        }
     }
 
     private void OnDisable()
     {
         GameManager.OnMoneyChanged -= UpdateMoneyText;
         GameManager.OnTimerChanged -= UpdateTimerValue;
+        GameManager.OnMoneyChanged -= UpdateQuotaText;
     }
 
     private void Start()
     {
         UpdateMoneyText(GameManager.Money);  // Update money amount to the global one
+        UpdateQuotaText(GameManager.Money);
     }
 
     /// <summary>
@@ -51,6 +62,24 @@ public class UIManager : MonoBehaviour
     {
         _timerFillImage.fillAmount = (float)timeElapsed / totalTime;
         _timerDayText.text = CalculateTimeString(timeElapsed, totalTime);
+        if (timeElapsed == totalTime)
+        {
+            if (GameManager.Money - _moneyAtStartOfDay >= GameManager.CurrentQuota)
+            {
+                // Met quota!
+                TransitionManager.Instance.TransitionAndCall(() =>
+                {
+                    SceneManager.LoadScene("Night");
+                });
+            } else
+            {
+                // Failed quota. Lost.
+                TransitionManager.Instance.TransitionAndCall(() =>
+                {
+                    SceneManager.LoadScene("Title");
+                });
+            }
+        }
     }
 
     /// <summary>
@@ -83,6 +112,22 @@ public class UIManager : MonoBehaviour
         string timeString = $"{hours} {period}";
 
         return timeString;
+    }
+
+    /// <summary>
+    /// Updates the quota text.
+    /// </summary>
+    private void UpdateQuotaText(int money)
+    {
+        int earnedMoney = money - _moneyAtStartOfDay;
+        _quotaText.text = "$" + earnedMoney.ToString() + "/" + GameManager.CurrentQuota;
+        if (earnedMoney > GameManager.CurrentQuota)
+        {
+            _quotaText.color = Color.green;
+        } else
+        {
+            _quotaText.color = Color.red;
+        }
     }
 
 }

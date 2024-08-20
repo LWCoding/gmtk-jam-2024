@@ -106,6 +106,8 @@ public class CustomerHandler : MonoBehaviour
     {
         yield return new WaitForSeconds(1);
 
+        GameManager.Money += GameManager.MONEY_PER_OMELETTE;  // Make money
+
         _aiSetter.target = _doorTransform;
         _aiPath.enabled = true;  // Make this go back to the door before destroying
 
