@@ -140,9 +140,11 @@ public abstract class TilemapManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Don't let the player place out-of-bounds, or in front of the door.
+    /// </summary>
     public bool IsValidTile(Vector3 pos)
     {
-        
         return pos.x >= GameManager.TilemapLeftLimit && pos.x < GameManager.TilemapRightLimit &&
                pos.y >= GameManager.TilemapDownLimit && pos.y < GameManager.TilemapUpLimit;
     }

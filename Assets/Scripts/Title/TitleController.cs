@@ -20,6 +20,7 @@ public class TitleController : MonoBehaviour
         GameManager.TilemapUpLimit = 2;
         GameManager.CameraZoom = 3.4f;
         GameManager.CameraYOffset = 0;
+        GameManager.Money = 100;
     }
 
     public void Update()

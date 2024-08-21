@@ -88,7 +88,6 @@ public class GameManager : MonoBehaviour
     {
         AllTileObjects = new(Resources.LoadAll<TileObject>("Special Tiles"));
         AllTileObjects.Sort((a, b) => a.CostToBuy - b.CostToBuy);
-        Money = 100;  // Starting amount of money
         Timer = 0;  // Start off at zero seconds
 
         if (RestaurantTiles.Count == 0)

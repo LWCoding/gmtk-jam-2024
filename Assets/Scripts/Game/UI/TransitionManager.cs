@@ -69,7 +69,6 @@ public class TransitionManager : MonoBehaviour
     private void TransitionFadeOut()
     {
         StartCoroutine(LerpAudio(0, 1));
-        Debug.Log("Playing hide animation");
         _transitionAnimator.Play("Hide");
         HasFadedInFromPrevScene = false;
     }

@@ -23,6 +23,7 @@ public class BuyableSlot : SlotHandler
         Vector3 uiMousePos = Input.mousePosition;
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(uiMousePos);
         _image.transform.position = uiMousePos;
+        if (!TilemapManager.Instance.IsValidTile(mousePos)) { return; }
         TilemapManager.Instance.EraseAllGhostTiles();
         TilemapManager.Instance.CreateGhostTileAt(mousePos, _tileObject);  // Place tile
     }
@@ -71,8 +72,9 @@ public class BuyableSlot : SlotHandler
 
     public override void RenderLogicAt(Vector3 worldPos)
     {
-        // If there's already something here, don't do anything
+        // If there's already something here or if its disallowed, don't do anything
         if (TilemapManager.Instance.GetTileAtPosition(worldPos) != null) { return; }
+        if (!TilemapManager.Instance.IsValidTile(worldPos)) { return; }
         AudioManager.Instance.PlayOneShot(SFX.BUILD_OBJECT); 
         GameManager.Money -= _tileObject.CostToBuy;  // Spend money
         TilemapManager.Instance.PlaceTileAt(worldPos, _tileObject);  // Place tile
