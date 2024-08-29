@@ -52,6 +52,8 @@ public class GameManager : MonoBehaviour
     public static float CameraZoom = 3.4f;
     public static float CameraYOffset = 0;
 
+    public static bool InitializedKitchen = false;
+
     public static int DayNumber = 0;  // Running count for current day
     public static int CurrentQuota  // Quota needed to complete day
     {
@@ -90,11 +92,12 @@ public class GameManager : MonoBehaviour
         AllTileObjects.Sort((a, b) => a.CostToBuy - b.CostToBuy);
         Timer = 0;  // Start off at zero seconds
 
-        if (RestaurantTiles.Count == 0)
+        if (!InitializedKitchen)
         {
             RestaurantTiles[new(-1, -1)] = AllTileObjects[4];  // Stoves
             RestaurantTiles[new(0, -1)] = AllTileObjects[4];
             RestaurantTiles[new(1, 1)] = AllTileObjects[2];  // Table
+            InitializedKitchen = true;
         }
     }
 

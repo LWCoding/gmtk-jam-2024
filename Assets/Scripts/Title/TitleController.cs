@@ -21,6 +21,7 @@ public class TitleController : MonoBehaviour
         GameManager.CameraZoom = 3.4f;
         GameManager.CameraYOffset = 0;
         GameManager.Money = 100;
+        GameManager.InitializedKitchen = false;
     }
 
     public void Update()
