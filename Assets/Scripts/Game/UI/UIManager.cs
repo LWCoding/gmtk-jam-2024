@@ -154,7 +154,7 @@ public class UIManager : MonoBehaviour
         int earnedMoney = money - _moneyAtStartOfDay;
         _quotaText.text = "$" + earnedMoney.ToString();
         _quotaMaxText.text = "$" + GameManager.CurrentQuota;
-        if (earnedMoney > GameManager.CurrentQuota)
+        if (earnedMoney >= GameManager.CurrentQuota)
         {
             _quotaText.color = new Color(0, 0.55f, 0);
         } else
